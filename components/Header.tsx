@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import roobenPhoto from "../public/image/rooben-photo.png";
-import crystalImage from "../public/image/crystals.png";
 
 const Header = () => {
   return (
@@ -14,23 +13,6 @@ const Header = () => {
           objectFit="contain"
         />
         <figcaption className="sr-only">A Picture of rooben</figcaption>
-      </figure>
-
-      <figure className="absolute -left-96 sm:-left-80 md:-left-72 lg:-left-52 xl:-left-20 2xl:left-0 top-0">
-        <Image
-          src={crystalImage}
-          alt="Image of a crystal"
-          layout="fixed"
-          objectFit="contain"
-        />
-      </figure>
-      <figure className="absolute -right-96 sm:-right-80 md:-right-72 lg:-right-52 xl:-right-20 2xl:right-0 -scale-x-100 top-0">
-        <Image
-          src={crystalImage}
-          alt="Image of a crystal"
-          layout="fixed"
-          objectFit="contain"
-        />
       </figure>
 
       <p className="text-slate-600 text-xl mt-8 mb-4">

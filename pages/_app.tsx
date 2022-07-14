@@ -18,10 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             "A full stack web developer, who loves to design and develop beautiful websites. I have been coding for over a year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them.",
           images: [
             {
-              url: "/og-image.png",
-              width: 800,
+              url: "/images/rooben-photo.png",
+              width: 420,
               height: 420,
-              alt: "Avneesh Agarwal",
+              alt: "A Picture of rooben",
             },
           ],
         }}

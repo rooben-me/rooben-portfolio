@@ -1,8 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap");
+@import url("./CustomButtons.css");
+@import url("./GradientText.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-main-color: #5f2eea;
+  --primary-dark-color: #2a00a2;
+  --title-color: #14142b;
+  --body-color: #4e4b66;
+  --line-color: #d9dbe9;
+  --link-color: #716c8d;
+  --background-color: #f7f7fc;
+  --white-color: #ffffff;
+}
 
 body {
   line-height: 1.5;
@@ -11,58 +24,4 @@ body {
 
 :focus-within {
   outline-offset: 8px;
-}
-
-@keyframes animated_text {
-  0% {
-    background-position: 0px 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0px 50%;
-  }
-}
-
-.primary-gradient {
-  background-image: linear-gradient(114.44deg, #7433ff 0%, #cc77ea 100%);
-  background-clip: text;
-  background-size: 150%;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  animation: animated_text 10s ease-in-out infinite;
-  -moz-animation: animated_text 10s ease-in-out infinite;
-  -webkit-animation: animated_text 10s ease-in-out infinite;
-}
-
-.design-gradient {
-  background-image: linear-gradient(90deg, #a769ff 22.72%, #4992ff 45.22%);
-  background-clip: text;
-  background-size: 150%;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  animation: animated_text 10s ease-in-out infinite;
-  -moz-animation: animated_text 10s ease-in-out infinite;
-  -webkit-animation: animated_text 10s ease-in-out infinite;
-}
-
-.developing-gradient {
-  background-image: linear-gradient(90deg, #cea943 55.59%, #ff5433 83.82%);
-  background-clip: text;
-  background-size: 300%;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  animation: animated_text 10s ease-in-out infinite;
-  -moz-animation: animated_text 10s ease-in-out infinite;
-  -webkit-animation: animated_text 10s ease-in-out infinite;
 }

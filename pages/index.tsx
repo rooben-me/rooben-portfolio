@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 const Home: NextPage = () => {
   return (
     <div>
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8 font-monda">
         <Navbar />
         <Header />
       </section>

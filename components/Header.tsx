@@ -5,11 +5,8 @@ import crystalImage from "../public/image/crystals.png";
 
 const Header = () => {
   return (
-    <section
-      id="hero"
-      className="my-16 flex mx-auto flex-col items-center overflow-hidden"
-    >
-      <figure className="relative w-[160px] h-[160px] md:w-[320px] md:h-[320px] mx-auto">
+    <section id="hero" className="my-16 flex mx-auto flex-col items-center ">
+      <figure className="relative overflow-hidden w-[160px] h-[160px] md:w-[320px] md:h-[320px] mx-auto">
         <Image
           src={roobenPhoto}
           alt="A Picture of rooben"

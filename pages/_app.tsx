@@ -6,9 +6,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo
-        title="Rooben Lovin"
-        titleTemplate="Rooben Lovin"
-        defaultTitle="Rooben Lovin"
+        title="Rooben Portfolio"
+        titleTemplate="Rooben Portfolio"
+        defaultTitle="Rooben Portfolio"
         description="A full stack web developer, who loves to design and develop beautiful websites. I have been coding for over a year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them."
         canonical="https://www.rooben.me/"
         openGraph={{

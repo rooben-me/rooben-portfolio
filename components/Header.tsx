@@ -18,7 +18,7 @@ const Header = () => {
       <p className="text-slate-600 text-xl mt-8 mb-4">
         Hey 👋, I’m Ruban kumar
       </p>
-      <h1 className="text-3xl md:text-5xl font-semibold text-slate-800 leading-normal max-w-2xl text-center">
+      <h1 className="text-3xl md:text-5xl font-semibold text-slate-800 !leading-snug max-w-2xl text-center">
         I Design & Develop interface & craft beautiful products for web & Mobile
       </h1>
       <p className="text-slate-600 leading-relaxed max-w-xl mt-4 text-center text-xl">

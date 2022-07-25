@@ -54,9 +54,7 @@ import { Head, Html, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html className="antialiased [font-feature-settings:'ss01']" lang="en">
-      {/* <Head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </Head> */}
+      <Head></Head>
       <body className="bg-background dark:bg-slate-900">
         <Main />
         <NextScript />

@@ -25,9 +25,15 @@ const Header = () => {
         I&apos;ve been crafting products for the last 3 years and have built
         various human-centered digital experiences for businesses.
       </p>
-      <button className="creative-button creative-button--dione mt-8">
-        <span>Download Resume</span>
-      </button>
+      <a
+        href="https://drive.google.com/uc?id=121RbXLjJtvx-Lgqe164szX3lQIP4Grqe&export=download"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <button className="creative-button creative-button--dione mt-8">
+          <span>Download Resume</span>
+        </button>
+      </a>
     </section>
   );
 };

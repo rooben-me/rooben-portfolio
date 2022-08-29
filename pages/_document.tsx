@@ -54,7 +54,9 @@ import { Head, Html, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html className="antialiased [font-feature-settings:'ss01']" lang="en">
-      <Head></Head>
+      <Head>
+        <meta name="ahrefs-site-verification" content="1833629160a9d29fde79ef938afb88fc7a071ac7906cd150d4817d01dcc54a86">
+      </Head>
       <body className="bg-background dark:bg-slate-900">
         <Main />
         <NextScript />

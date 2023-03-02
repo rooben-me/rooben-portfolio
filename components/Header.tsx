@@ -15,7 +15,7 @@ const Header = () => {
         <figcaption className="sr-only">A Picture of rooben</figcaption>
       </figure>
 
-      <p className="text-slate-600 text-xl mt-8 mb-4">
+      <p className="text-slate-600 bg-background md:bg-none px-4 text-xl mt-8 mb-4">
         Hey 👋, I’m Ruban kumar
       </p>
       <h1 className="text-3xl md:text-5xl font-semibold text-slate-800 !leading-snug max-w-2xl text-center">

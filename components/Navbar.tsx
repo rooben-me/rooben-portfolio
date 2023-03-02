@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
 
   return (
-    <section className="grid grid-cols-2 md:grid-cols-3">
+    <section className="grid place-items-center grid-cols-1 sticky top-4 backdrop-blur-md bg-background z-50 bg-opacity-80 rounded-full md:p-4 md:grid-cols-3">
       <Image
         src={roobenlogo}
         alt="logo of rooben"
@@ -41,7 +41,7 @@ const Navbar = () => {
       </nav>
 
       <Link href="#">
-        <a className="primary-gradient text-xl place-self-end font-medium">
+        <a className="hidden md:block primary-gradient text-xl place-self-end font-medium">
           Contact me
         </a>
       </Link>

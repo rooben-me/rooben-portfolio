@@ -4,7 +4,7 @@ import crystalImage from "../public/image/crystals.png";
 
 const Crystals = () => {
   return (
-    <div className="absolute inset-0 -z-10">
+    <div className="absolute hidden sm:block top-0 inset-0 -z-10">
       <div className=" relative w-full min-h-screen">
         <figure className="absolute -left-96 sm:-left-80 md:-left-72 lg:-left-52 xl:-left-20 2xl:left-0 top-0">
           <Image

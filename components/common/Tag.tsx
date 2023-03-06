@@ -21,7 +21,7 @@ export const Tag = ({
 }: ITag) => {
   return (
     <span
-      className={`inline-flex mr-3 items-center gap-1.5 px-2.5 py-0.5 text-xs font-medium ${color} ${backgroundColor} ${
+      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-medium ${color} ${backgroundColor} ${
         rounded ? "rounded-full" : "rounded"
       } ${className}`}
     >
@@ -35,9 +35,9 @@ export const Tag = ({
         </svg>
       )}
       {icon}
-      <span className={`text-sm ${color} first-letter:uppercase`}>
-        {text.split(" ").join("-")}
-      </span>
+      <span className={`text-sm ${color} first-letter:uppercase`}>{text}</span>
     </span>
   );
 };
+
+export default Tag;

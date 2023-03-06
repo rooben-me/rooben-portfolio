@@ -5,5 +5,5 @@ export interface IPost {
   thumbnailBanner: string;
   title: string;
   description: string;
-  roles: string;
+  roles: string[];
 }

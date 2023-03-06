@@ -1,13 +1,18 @@
 import React from "react";
+import { IPost } from "../types/post";
 import Card from "./common/Card";
 
-const RecentWork = () => {
+type Props = {
+  posts: [IPost];
+};
+
+const RecentWork = ({ posts }: Props) => {
   const PROJECTS = [
     {
       title: "MyPricing",
       imageSrc: "/image/work/mypricing.png",
       imageAlt: "mypricing project",
-      linkTo: "#",
+      linkTo: "https://google.com",
       roles: "Product Design, Front end Development",
     },
     {
@@ -31,15 +36,9 @@ const RecentWork = () => {
         Includes Saas Application, Chrome extension projects
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-12 lg:gap-24 mt-12 lg:mt-12 w-full">
-        {PROJECTS.map(({ title, imageAlt, imageSrc, linkTo, roles }) => (
-          <Card
-            key={title}
-            src={imageSrc}
-            alt={imageAlt}
-            linkTo={linkTo}
-            roles={roles}
-          />
+      <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-12 lg:gap-12 mt-12 lg:mt-12 w-full">
+        {posts.map(({ title, roles, slug, thumbnail }) => (
+          <Card key={title} src={thumbnail} slug={slug} roles={roles} />
         ))}
       </div>
     </section>

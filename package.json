@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.16",
     "@vercel/analytics": "^0.1.11",
     "gray-matter": "^4.0.3",
     "next": "12.2.2",

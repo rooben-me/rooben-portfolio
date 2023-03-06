@@ -7,28 +7,32 @@ const Navbar = () => {
   const navItems = [
     {
       name: "Home",
-      href: "#",
+      href: "/",
     },
     {
-      name: "About",
-      href: "#",
+      name: "Recent work",
+      href: "/#recent-work",
     },
     {
-      name: "Skills",
-      href: "#",
+      name: "Socials",
+      href: "/#",
     },
   ];
 
   return (
-    <section className="grid place-items-center grid-cols-1 sticky top-4 backdrop-blur-md bg-background z-50 bg-opacity-80 rounded-full md:p-4 md:grid-cols-3">
-      <Image
-        src={roobenlogo}
-        alt="logo of rooben"
-        layout="fixed"
-        width={160}
-        height={24}
-        className="place-self-start"
-      />
+    <section className="grid place-items-center grid-cols-1 backdrop-blur-md bg-background z-50 bg-opacity-80 rounded-full p-4 m-4 md:grid-cols-3">
+      <Link href="/">
+        <a>
+          <Image
+            src={roobenlogo}
+            alt="logo of rooben"
+            layout="fixed"
+            width={160}
+            height={24}
+            className="place-self-start"
+          />
+        </a>
+      </Link>
 
       <nav className="hidden md:flex md:gap-16 md:mx-auto md:items-center">
         {navItems.map(({ name, href }) => (

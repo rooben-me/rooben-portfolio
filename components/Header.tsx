@@ -1,10 +1,14 @@
 import Image from "next/image";
 
 import roobenPhoto from "../public/image/rooben-photo.png";
+import { Text, Title } from "./common/Typography";
 
 const Header = () => {
   return (
-    <section id="hero" className="my-16 flex mx-auto flex-col items-center">
+    <section
+      id="hero"
+      className="my-8 md:my-16 flex mx-auto flex-col items-center p-4"
+    >
       <figure className="relative w-[160px] h-[160px] md:w-[320px] md:h-[320px] mx-auto">
         <Image
           src={roobenPhoto}
@@ -15,16 +19,15 @@ const Header = () => {
         <figcaption className="sr-only">A Picture of rooben</figcaption>
       </figure>
 
-      <p className="text-slate-600 bg-background md:bg-none px-4 text-xl mt-8 mb-4">
-        Hey 👋, I’m Ruban kumar
-      </p>
-      <h1 className="text-3xl md:text-5xl font-semibold text-slate-800 !leading-snug max-w-2xl text-center">
+      <Text className="px-4 mt-8 mb-4">Hey 👋, I’m Ruban kumar</Text>
+      <Title>
         I Design & Develop interface & craft beautiful products for web & Mobile
-      </h1>
-      <p className="text-slate-600 leading-relaxed max-w-xl mt-4 text-center text-xl">
+      </Title>
+      <Text className="mt-4">
         I&apos;ve been crafting products for the last 3 years and have built
         various human-centered digital experiences for businesses.
-      </p>
+      </Text>
+
       <a
         href="https://drive.google.com/uc?id=121RbXLjJtvx-Lgqe164szX3lQIP4Grqe&export=download"
         target="_blank"

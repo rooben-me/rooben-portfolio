@@ -12,15 +12,14 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
-  console.log(posts, "posts");
-
+  console.log("posts", posts);
   return (
     <div>
-      <section className="p-4 font-monda overflow-hidden relative">
+      <section className="font-monda overflow-hidden relative">
         <div className="container mx-auto">
           <Navbar />
           <Header />
-          <RecentWork />
+          <RecentWork posts={posts} />
         </div>
         <Crystals />
       </section>
@@ -33,11 +32,13 @@ export default Home;
 // get posts from serverside at build time
 export const getStaticProps: GetStaticProps = async () => {
   const posts = getAllPosts([
-    "title",
     "slug",
     "date",
-    "description",
     "thumbnail",
+    "thumbnailBanner",
+    "title",
+    "description",
+    "roles",
   ]);
 
   // retunr the posts props

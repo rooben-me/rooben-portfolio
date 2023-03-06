@@ -12,7 +12,6 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
-  console.log("posts", posts);
   return (
     <div>
       <section className="font-monda overflow-hidden relative">

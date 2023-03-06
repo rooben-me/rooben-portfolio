@@ -4,7 +4,7 @@ export const Text = ({
   children,
   className,
 }: {
-  children: JSX.Element | string;
+  children: React.ReactNode;
   className?: string;
 }) => {
   return (

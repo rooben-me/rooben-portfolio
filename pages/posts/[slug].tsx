@@ -15,7 +15,7 @@ type Props = {
 
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   return (
-    <section className="font-monda container mx-auto">
+    <section className="font-monda container mx-auto p-4">
       <Navbar />
 
       <div className="flex flex-col py-16 my-8">
@@ -29,12 +29,12 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       </div>
 
       <img
-        className="mx-auto rounded-xl p-4"
+        className="mx-auto rounded-xl"
         src={frontMatter.thumbnailBanner}
         alt={frontMatter.title}
       />
 
-      <article className="prose w-full mx-auto p-4 lg:w-2/3 mt-24">
+      <article className="prose w-full mx-auto lg:w-2/3 mt-24">
         <MDXRemote {...source} />
       </article>
     </section>

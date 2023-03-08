@@ -9,7 +9,7 @@ const Header = () => {
       id="hero"
       className="my-8 md:my-16 flex mx-auto flex-col items-center p-4"
     >
-      <figure className="relative w-[160px] h-[160px] md:w-[320px] md:h-[320px] mx-auto">
+      <figure className="relative w-[240px] h-[240px] md:w-[320px] md:h-[320px] mx-auto">
         <Image
           src={roobenPhoto}
           alt="A Picture of rooben"
@@ -29,7 +29,7 @@ const Header = () => {
       </Text>
 
       <a
-        href="https://drive.google.com/uc?id=121RbXLjJtvx-Lgqe164szX3lQIP4Grqe&export=download"
+        href="https://drive.google.com/file/d/1O7_rqwgo5iSx-TSSsvqowwgJHubduoGI/view?usp=sharing"
         target="_blank"
         rel="noreferrer"
       >

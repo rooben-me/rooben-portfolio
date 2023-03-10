@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap");
 @import url("./CustomButtons.css");
+@import url("./CustomLinks.css");
 @import url("./GradientText.css");
 
 @tailwind base;

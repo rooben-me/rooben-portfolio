@@ -1,14 +1,14 @@
 .creative-button {
   pointer-events: auto;
   cursor: pointer;
-  background: #e7e7e7;
+  background: #5f2eea;
   border: none;
-  padding: 1.5rem 3rem;
+  padding: 1.2rem 2.6rem;
   font-family: inherit;
   font-size: inherit;
   position: relative;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 12px;
 }
 
 .creative-button::before,
@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.creative-button--dione {
+/* .creative-button--dione {
   background: none;
   font-weight: 700;
   padding: 1.5rem 3rem;
@@ -34,7 +34,7 @@
 
 .creative-button--dione::before {
   content: "";
-  background: var(--primary-main-color);
+  background: #5f2eea;
   transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
 }
 
@@ -44,7 +44,7 @@
 
 .creative-button--dione::after {
   content: "";
-  border: 1px solid var(--primary-main-color);
+  border: 1px solid #5f2eea;
   transition: transform 0.3s cubic-bezier(0.2, 1, 0.7, 1);
   border-radius: 0px;
   transform: scale3d(0.85, 0.65, 1);
@@ -52,4 +52,69 @@
 
 .creative-button--dione:hover::after {
   transform: scale3d(1, 1, 1);
+} */
+
+.creative-button--calypso {
+  overflow: hidden;
+  font-weight: 600;
+  color: #fff;
+}
+
+.creative-button--calypso span {
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+.creative-button--calypso:hover span {
+  animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
+}
+
+@keyframes MoveScaleUpInitial {
+  to {
+    transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+}
+
+@keyframes MoveScaleUpEnd {
+  from {
+    transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.creative-button--calypso::before {
+  content: "";
+  background: #9900f2;
+  width: 120%;
+  height: 0;
+  padding-bottom: 120%;
+  top: -110%;
+  left: -10%;
+  border-radius: 50%;
+  transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+}
+
+.creative-button--calypso:hover::before {
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.creative-button--calypso::after {
+  content: "";
+  background: #9900f2;
+  transform: translate3d(0, -100%, 0);
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.creative-button--calypso:hover::after {
+  transform: translate3d(0, 0, 0);
+  transition-duration: 0.05s;
+  transition-delay: 0.4s;
+  transition-timing-function: linear;
 }

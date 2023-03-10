@@ -5,11 +5,8 @@ import { Text, Title } from "./common/Typography";
 
 const Header = () => {
   return (
-    <section
-      id="hero"
-      className="my-8 md:my-16 flex mx-auto flex-col items-center p-4"
-    >
-      <figure className="relative w-[240px] h-[240px] md:w-[320px] md:h-[320px] mx-auto">
+    <section id="hero" className="my-8 flex mx-auto flex-col items-center p-4">
+      <figure className="relative w-[240px] h-[240px] md:w-[300px] md:h-[300px] mx-auto">
         <Image
           src={roobenPhoto}
           alt="A Picture of rooben"
@@ -32,10 +29,9 @@ const Header = () => {
         href="https://drive.google.com/file/d/1O7_rqwgo5iSx-TSSsvqowwgJHubduoGI/view?usp=sharing"
         target="_blank"
         rel="noreferrer"
+        className="creative-button creative-button--calypso mt-12"
       >
-        <button className="creative-button creative-button--dione mt-8">
-          <span>Download Resume</span>
-        </button>
+        <span>Download Resume</span>
       </a>
     </section>
   );

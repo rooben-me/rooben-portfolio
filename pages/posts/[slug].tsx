@@ -1,6 +1,7 @@
 import { serialize } from "next-mdx-remote/serialize";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import rehypeSlug from "rehype-slug";
 
 import { IPost } from "../../types/post";
 import { getPost, getAllPosts } from "../../utils/mdxUtils";
@@ -29,7 +30,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       </div>
 
       <img
-        className="w-full rounded-2xl overflow-hidden"
+        className="w-full rounded-lg lg:rounded-xl overflow-hidden"
         src={frontMatter.thumbnailBanner}
         alt={frontMatter.title}
       />
@@ -51,8 +52,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as Iparams;
   // get the slug
   const { content, data } = getPost(slug);
+
   // serialize the data on the server side
-  const mdxSource = await serialize(content, { scope: data });
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: {
+      rehypePlugins: [
+        rehypeSlug, // add IDs to any h1-h6 tag that doesn't have one, using a slug made from its text
+      ],
+    },
+  });
   return {
     props: {
       source: mdxSource,

@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
 
   return (
-    <section className="backdrop-blur-md bg-background z-50 bg-opacity-80 rounded-full p-4 m-4 flex items-center justify-center md:justify-between xl:grid xl:place-items-center xl:grid-cols-3 gap-6">
+    <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between xl:grid xl:place-items-center xl:grid-cols-3 gap-6">
       <Link href="/">
         <a>
           <Image
@@ -34,7 +34,7 @@ const Navbar = () => {
         </a>
       </Link>
 
-      <nav className="hidden relative md:flex md:flex-1 md:justify-center md:gap-16 md:mx-auto md:items-center">
+      <nav className="hidden md:flex md:flex-1 md:justify-center md:gap-16 md:mx-auto md:items-center">
         {navItems.map(({ name, href }) => (
           <Link key={name} href={href}>
             <a className="text-link text-lg hover:text-primary-main transition-colors ease-in-out duration-500">
@@ -45,7 +45,7 @@ const Navbar = () => {
       </nav>
 
       <Link href="#">
-        <a className="hidden primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">
+        <a className="hidden relative primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">
           <span>Contact me</span>
           <svg
             className="link__graphic link__graphic--stroke link__graphic--scribble"

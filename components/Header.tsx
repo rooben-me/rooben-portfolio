@@ -31,7 +31,7 @@ const Header = () => {
         rel="noreferrer"
         className="creative-button creative-button--calypso mt-12"
       >
-        <span>Download Resume</span>
+        <span>View My Resume</span>
       </a>
     </section>
   );

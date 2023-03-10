@@ -13,16 +13,14 @@ type Props = {
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
   return (
-    <div>
-      <section className="font-monda overflow-hidden relative">
-        <div className="container mx-auto">
-          <Navbar />
-          <Header />
-          <RecentWork posts={posts} />
-        </div>
-        <Crystals />
-      </section>
-    </div>
+    <section className="font-monda overflow-hidden relative">
+      <div className="container mx-auto">
+        <Navbar />
+        <Header />
+        <RecentWork posts={posts} />
+      </div>
+      <Crystals />
+    </section>
   );
 };
 

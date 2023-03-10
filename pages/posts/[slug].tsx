@@ -15,10 +15,10 @@ type Props = {
 
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   return (
-    <section className="font-monda container mx-auto">
+    <section className="font-monda container mx-auto p-4">
       <Navbar />
 
-      <div className="flex flex-col py-16 my-8">
+      <div className="flex flex-col py-12 md:py-16 my-8">
         <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
           {frontMatter.title}
         </h1>
@@ -29,12 +29,12 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       </div>
 
       <img
-        className="mx-auto rounded-xl p-4"
+        className="w-full rounded-2xl overflow-hidden"
         src={frontMatter.thumbnailBanner}
         alt={frontMatter.title}
       />
 
-      <article className="prose w-full mx-auto p-4 lg:w-2/3 mt-24">
+      <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16">
         <MDXRemote {...source} />
       </article>
     </section>

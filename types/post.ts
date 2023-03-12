@@ -6,4 +6,5 @@ export interface IPost {
   title: string;
   description: string;
   roles: string[];
+  draft: boolean;
 }

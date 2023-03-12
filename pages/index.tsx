@@ -36,6 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
     "title",
     "description",
     "roles",
+    "draft",
   ]);
 
   // retunr the posts props

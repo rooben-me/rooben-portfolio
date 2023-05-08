@@ -81,7 +81,7 @@ export function getAllPosts(fields: string[]): Items[] {
   // get the posts from the filepaths with the needed fields sorted by date
   const posts = filePaths
     .map((filePath) => getPostItems(filePath, fields))
-    .sort((post1, post2) => (post1.date > post2.date ? 1 : -1));
+    .sort((post1, post2) => (post1.date < post2.date ? 1 : -1));
   // return the available post
   return posts;
 }

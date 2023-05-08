@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import roobenlogo from "../public/image/rooben-logo.svg";
 
-const Navbar = () => {
+export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
   const navItems = [
     {
       name: "Home",
@@ -13,12 +13,30 @@ const Navbar = () => {
       name: "Recent work",
       href: "/#recent-work",
     },
-    {
-      name: "Socials",
-      href: "/#",
-    },
   ];
 
+  return (
+    <nav
+      className={`${
+        isFooter ? "flex" : "hidden md:flex"
+      } md:flex-1 justify-center gap-12 md:gap-16 md:mx-auto md:items-center`}
+    >
+      {navItems.map(({ name, href }) => (
+        <Link key={name} href={href}>
+          <a
+            className={`${
+              isFooter ? "pb-6" : ""
+            } text-link text-lg hover:text-primary-main transition-colors ease-in-out duration-500`}
+          >
+            <span>{name}</span>
+          </a>
+        </Link>
+      ))}
+    </nav>
+  );
+};
+
+const Navbar = () => {
   return (
     <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between xl:grid xl:place-items-center xl:grid-cols-3 gap-6">
       <Link href="/">
@@ -34,15 +52,7 @@ const Navbar = () => {
         </a>
       </Link>
 
-      <nav className="hidden md:flex md:flex-1 md:justify-center md:gap-16 md:mx-auto md:items-center">
-        {navItems.map(({ name, href }) => (
-          <Link key={name} href={href}>
-            <a className="text-link text-lg hover:text-primary-main transition-colors ease-in-out duration-500">
-              <span>{name}</span>
-            </a>
-          </Link>
-        ))}
-      </nav>
+      <InterLinks />
 
       <Link href="#">
         <a className="hidden relative primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">

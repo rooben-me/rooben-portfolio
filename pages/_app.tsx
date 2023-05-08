@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import "../styles/prism-coldark-dark.css";
+
 import type { AppProps } from "next/app";
 import { NextSeo } from "next-seo";
 import { Analytics } from "@vercel/analytics/react";

@@ -1,0 +1,63 @@
+---
+date: "2023-5-8"
+thumbnail: "/image/work/mypricing-bot/mypricing-assistant.png"
+thumbnailBanner: "/image/work/mypricing-bot/mypricing-assistant-banner.png"
+title: "MyPricing Assistant"
+roles: ["Design and Development"]
+description: "MyPricing Assistant: An Intelligent Repricing App Assistant"
+draft: false
+---
+
+# MyPricing Assistant: An Intelligent Repricing App Assistant
+
+Hello everyone,
+
+I am Rooben, and I am excited to share with you my latest project, which I built for BoostMyShop. In this blog post, I will explain the motivation behind this project, how it works, what is the use of this project, and how I built it.
+
+## Motivation
+
+BoostMyShop is a company that provides e-commerce solutions to businesses. One of their products is MyPricing, which is a repricing app that helps businesses to optimize their prices on different sales channels. MyPricing has a lot of features, and it can be overwhelming for new users to understand how to use it. Therefore, I decided to build an intelligent assistant that can help users to get answers to their questions about MyPricing.
+
+## How it works
+
+MyPricing Assistant is built using Langchain, Python, Gradio, and GPT-3. The first step is to get the content of the website link provided by the user and convert it into a vector. This is done using GPTSimpleVectorIndex. The vector is then stored in a JSON file. Langchain is used to communicate with GPT-3, which is used to answer user queries. The user can ask any question related to MyPricing, and the assistant will provide the most relevant answer from the documentation.
+
+To implement this project, I used the following libraries and tools:
+
+- `langchain` to communicate with the GPT-3 API and handle authentication.
+- `BeautifulSoup` to parse the HTML and extract the text content of the website links provided by the user.
+- `gradio` to create a simple user interface for the assistant.
+- `GPTSimpleVectorIndex` to convert the text content of the website links into vectors.
+- `json` to store the vectors in a JSON file.
+- `zero-shot-react-description` model from OpenAI to handle user queries.
+
+## Use of this project
+
+MyPricing Assistant is a useful tool for new users of MyPricing. It can help them to understand how to use the app and its features. It can also help them to troubleshoot any issues they may encounter while using the app. The assistant is available 24/7, and users can ask questions at any time.
+
+MyPricing Assistant can help users to:
+
+- Quickly find answers to their questions about MyPricing without having to search through the documentation manually.
+- Get detailed explanations of MyPricing features and how to use them.
+- Troubleshoot any issues they may encounter while using the app.
+- Save time and effort by providing them with quick and accurate answers to their questions.
+- Improve their understanding of the app and its features.
+
+Overall, MyPricing Assistant is a valuable tool for anyone who uses MyPricing. It can help users to get the most out of the app and improve their e-commerce business.
+
+## How I built this project
+
+I used Python to build this project. Here are the steps I followed:
+
+1. I used the `BeautifulSoup` library to extract the text content of the website links provided by the user.
+2. I used the `GPTSimpleVectorIndex` class from the `gpt_index` library to convert the text content into vectors.
+3. I stored the vectors in a JSON file using the `json` library.
+4. I used the `langchain` library to communicate with the GPT-3 API and handle authentication.
+5. I used the `zero-shot-react-description` model from OpenAI to handle user queries.
+6. I used the `gradio` library to create a simple user interface for the assistant.
+
+## Summary
+
+In summary, MyPricing Assistant is an intelligent assistant that can help users of MyPricing to get answers to their questions. It is built using Langchain, Python, Gradio, and GPT-3. The assistant is available 24/7, and users can ask questions at any time. I hope this project will be useful to BoostMyShop and its users. Thank you for reading this blog post.
+
+If you have any questions or feedback, please feel free to leave a comment below.

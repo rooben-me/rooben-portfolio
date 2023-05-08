@@ -2,11 +2,14 @@ import { serialize } from "next-mdx-remote/serialize";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import rehypeSlug from "rehype-slug";
+import rehypePrism from "rehype-prism-plus";
+import rehypeCodeTitles from "rehype-code-titles";
 
 import { IPost } from "../../types/post";
 import { getPost, getAllPosts } from "../../utils/mdxUtils";
 import { ParsedUrlQuery } from "querystring";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 // props type
 type Props = {
@@ -38,6 +41,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16">
         <MDXRemote {...source} />
       </article>
+      <Footer />
     </section>
   );
 };
@@ -59,6 +63,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     mdxOptions: {
       rehypePlugins: [
         rehypeSlug, // add IDs to any h1-h6 tag that doesn't have one, using a slug made from its text
+        rehypeCodeTitles,
+        rehypePrism,
       ],
     },
   });

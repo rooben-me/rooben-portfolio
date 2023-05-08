@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Crystals from "../components/Crystals";
 import RecentWork from "../components/RecentWork";
+import Footer from "../components/Footer";
 
 type Props = {
   posts: [IPost];
@@ -18,6 +19,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
         <Navbar />
         <Header />
         <RecentWork posts={posts} />
+        <Footer />
       </div>
       <Crystals />
     </section>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { InterLinks } from "./Navbar";
 
 const social = [
@@ -54,12 +53,16 @@ export default function Footer() {
         <InterLinks isFooter />
         <div className="mt-4 md:mt-6 flex justify-center space-x-10">
           {social.map((item) => (
-            <Link key={item.name} href={item.href}>
-              <a className="text-link hover:text-primary-main transition-colors ease-in-out duration-500">
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-8 w-8" aria-hidden="true" />
-              </a>
-            </Link>
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              key={item.name}
+              href={item.href}
+              className="text-link hover:text-primary-main transition-colors ease-in-out duration-500"
+            >
+              <span className="sr-only">{item.name}</span>
+              <item.icon className="h-8 w-8" aria-hidden="true" />
+            </a>
           ))}
         </div>
       </div>

@@ -13,7 +13,7 @@ interface ICard {
 const Card = ({ src, slug, roles }: ICard) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a className="p-4 rounded-xl hover:border-slate-200 active:border-slate-300 border border-transparent transition-colors ease-in-out">
+      <a className="p-4 rounded-xl hover:border-slate-200 hover:bg-white active:border-slate-300 border border-transparent transition-colors ease-in-out">
         <article className="flex flex-col items-start gap-2 md:gap-4 max-w-[520px] w-full">
           <img src={src} alt={src} className="object-contain" />
           <div className="flex flex-wrap gap-3">

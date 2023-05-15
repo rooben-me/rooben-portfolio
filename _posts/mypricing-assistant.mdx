@@ -8,13 +8,11 @@ description: "MyPricing Assistant: An Intelligent Repricing App Assistant"
 draft: false
 ---
 
-# MyPricing Assistant: An Intelligent Repricing App Assistant
-
 Hello everyone,
 
 I am excited to share with you my latest project, which I built for BoostMyShop. In this blog post, I will explain the motivation behind this project, how it works, what is the use of this project, and how I built it.
 
-## Our problem
+## Motivation
 
 Boostmyshop mypricing is a powerful tool that can help online businesses boost their sales volume to the maximum, and our team recognizes the importance of providing exceptional customer support for the success of our project. However, this requires a significant amount of effort from our core team members.
 
@@ -38,9 +36,9 @@ After scraping knowledge about mypricing from various sources such as Boostmysho
 
 To simplify the chunking and querying process, we turned to GPT-Index. This tool helped us streamline the data and enabled us to efficiently provide GPT-3 with the most relevant information.
 
-## Coverting Text to Vectors :
+## Coverting Text to Vectors
 
-We start by creating an index of this data with the [GPTSimpleVectorIndex()](https://gpt-index.readthedocs.io/en/latest/guides/index_guide.html#vector-store-index). This will turn all the text data to vectors:
+We start by creating an index of this data with the [GPTSimpleVectorIndex()](https://gpt-index.readthedocs.io/en/latest/guides/primer/index_guide.html#vector-store-index). This will turn all the text data to vectors:
 
 ![vector_store.webp](/image/work/mypricing-bot/vector_store.webp)
 
@@ -48,15 +46,15 @@ This is how the words will be represented in vectors :
 
 ![text2vec.png](/image/work/mypricing-bot/text2vec.png)
 
-## Querying vectors :
+## Querying vectors
 
-Querying a vector store index involves fetching the top-k most similar Nodes, and passing those into our Response Synthesis module.
+[Querying a vector store index](https://gpt-index.readthedocs.io/en/latest/guides/primer/index_guide.html#id1) involves fetching the top-k most similar Nodes, and passing those into our Response Synthesis module.
 
 ![vector_store_query.webp](/image/work/mypricing-bot/vector_store_query.webp)
 
 Now, we've built a way to both store our chunks and query them.
 
-## Giving this knowledge to langChain :
+## Giving this knowledge to langChain
 
 LangChain provides a standard interface for agents, a selection of agents to choose from, and examples of end to end agents. Agents involve an LLM making decisions about which Actions to take, taking that Action, seeing an Observation, and repeating that until done.
 
@@ -77,10 +75,8 @@ The result of the langchain agent with be the final answer showed in the image a
  I need to find out how to connect my sales channel to mypricing
 Action: QueryingDB
 Action Input: How to connect my sales channel to mypricing> Top 1 nodes:
-> [Node b3ac943f-9a9d-496a-b09a-b64e3dedf4ad] [Similarity score:                     0.817745] from your competition, and become the
-customer's choice in your marketplace by monitoring your gl...
-> Searching in chunk: from your competition, and become the
-customer'...
+> [Node b3ac943f-9a9d-496a-b09a-b64e3dedf4ad] [Similarity score:0.817745] from your competition, and become the customer's choice in your marketplace by monitoring your gl...
+> Searching in chunk: from your competition, and become the customer'...
 > Initial response:
 Boostmyshop myPricing's dynamic pricing tool can be easily connected to your sales channels and allows you to import your product catalogue quickly. To connect your sales channels to myPricing, you can follow the steps below:
 
@@ -123,16 +119,188 @@ Final Answer: To connect your sales channels to myPricing, log in to your myPric
 > Finished chain.
 ```
 
-## Creating UI with Gradio :
+## Creating User Interfaces Using Gradio
 
-Gradio is one of the *best ways to share* your machine learning model, API, or data science workflow with others is to create an *interactive app* that allows your users or colleagues to try out the demo in their browsers.
+As a developer, I'm comfortable with React, my go-to for creating user interfaces. But recently, I thought of creating a quick prototype user interface using Python itself. While looking for a UI library, I discovered Gradio, a user interface library based on Gradio, and I was intrigued.
 
-Here are three reasons why you should use Gradio to create interactive apps:
+I had already used [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui), which is based on Gradio, and I liked the UI's look. To create a quick prototype, I decided to use Gradio to build my user interface, and I was pleasantly surprised. The code was short, and I was able to achieve great things with it.
 
-1. **Easy to Use**: Gradio allows you to build demos and share them all in Python with just a few lines of code. This means you don't have to worry about learning new programming languages or frameworks.
-2. **Efficient UI Creation**: One of the best things about Gradio is that it takes care of the UI for you. You don't need to spend time creating custom styles or layouts for your app. Instead, you can simply call the Gradio component and let it handle the UI. This frees up your time to focus on what you do best - building great machine learning models and workflows.
-3. **Highly Customizable**: Gradio is also highly flexible, so you can tailor your app to suit your specific needs. You can choose from a range of input and output types, such as images, text, and audio. This allows you to create a demo that truly showcases the power of your model or workflow.
+What I found most impressive about Gradio was its concise code structure that allowed me to implement complex features without breaking a sweat. Even with a short code, I was able to achieve great things, and I couldn't be happier with the results.
 
-## Final App :
+If you're ever in a rush to create a user interface, I highly recommend giving Gradio a try. It may surprise you with its capabilities and ease of use. Who knows? You might just fall in love with Python all over again!
+
+#### App UI
 
 ![gradio-ui](/image/work/mypricing-bot/gradio-ui.png)
+
+---
+
+## Using Stable Diffusion to create Thumbnails
+
+As someone with experience in creating AI-generated images, I have used Stable Diffusion to create thumbnails for this blog posts, using a version of the tool that has been fine-tuned on an anime-style dataset. The resulting images have been visually striking and have helped to capture the attention of readers.
+
+In addition to creating thumbnails, I have used Stable Diffusion to generate other AI-generated images, such as a robot for thumbnail.
+
+#### First thumbnail for this blog
+
+![illustration on stable diffusion](/image/work/mypricing-bot/stable-diff-img.png)
+
+Although this thumbnail is cool, I have decided to create a custom thumbnail
+
+![another illustration on stable diffusion](/image/work/mypricing-bot/dreamstudio-img.png)
+
+prompt used to create the image above :
+
+| Prompt          | Single cute white robot with dolphine style color, lots of plugs connected in its back. Realistic, photorealistic. Cute two eyes and flying in space, lots of empty space. Robot on top. |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Negative Prompt | 3 hands, empty face, multiple robots                                                                                                                                                     |
+| Model           | stable-diffusion-xl-beta-v2-2-2                                                                                                                                                          |
+| Steps           | 50                                                                                                                                                                                       |
+| Seed            | 157866822                                                                                                                                                                                |
+
+In the image above, you can see that I removed the background and incorporated it into my design. Here is the final version of the thumbnail:
+
+![final thumbnail](/image/work/mypricing-bot/mypricing-assistant-banner.svg)
+
+You may be wondering what the line coming from the robot's head represents.
+
+Even I don't know why I included it 🤷‍♂️.
+
+> Sometimes, design decisions come down to intuition and personal preference.
+
+## Step by Step code explanation
+
+This app was created using Google Colab. Use the following link to open the code in notebook.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/13pxtjDKGcK5jOYqGp2pD0etzF_DzXrmQ?usp=sharing)
+
+#### Setup Environment
+
+```python
+!pip install gpt_index && pip install html2text && pip install langchain && !pip install gradio
+
+import os
+
+os.environ["OPENAI_API_KEY"] = "" #@param {type:"string"}
+
+from gpt_index import GPTListIndex, SimpleWebPageReader, BeautifulSoupWebReader, GPTSimpleVectorIndex
+from IPython.display import Markdown, display
+from langchain.agents import load_tools, Tool, initialize_agent
+from langchain.llms import OpenAI
+from langchain.agents import ZeroShotAgent, Tool, AgentExecutor
+from langchain.agents import initialize_agent, Tool
+from langchain import LLMChain, OpenAI, Cohere, HuggingFaceHub, PromptTemplate
+```
+
+#### Make vector from webpage link
+
+```python
+#@title # Implementing Document QA
+
+Input=[
+    "https://boostmyshop.com/",
+    "https://www.boostmyshop.com/features/mypricing-repricing-price-tracker-dynamic-pricing/",
+    "https://releases.boostmyshop.com/blog/page/1",
+    "https://releases.boostmyshop.com/blog/page/2",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-mypricing-v3-12-2-2023-1",
+    "https://help.boostmyshop.com/portal/en/kb/articles/onboarding-listing-products",
+    "https://help.boostmyshop.com/portal/en/kb/articles/onboarding-oauth-mirakl",
+    "https://help.boostmyshop.com/portal/en/kb/articles/mirakl-channels",
+    "https://help.boostmyshop.com/portal/en/kb/articles/feature-and-specifications-18-7-2022",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-do-i-add-a-new-marketplace-to-my-account",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-to-manage-promotions",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-repricing-strategies-are-available",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-does-action-needed-in-status-mean",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-to-correct-a-required-action",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-product-data-can-i-modify-directly-in-mypricing",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-the-health-of-my-shop-shows",
+    "https://help.boostmyshop.com/portal/en/kb/articles/can-i-know-if-i-am-in-the-best-position-compared-to-my-competitors",
+    "https://help.boostmyshop.com/portal/en/kb/articles/onboarding-14-7-2022",
+    "https://www.boostmyshop.com/the-ultimate-guide-to-e-commerce/build-a-successful-repricing-strategy-in-5-minutes-with-mypricing-for-mirakl/",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-to-define-my-minimum-and-maximum-prices-through-file-import-bulk",
+    "https://help.boostmyshop.com/portal/en/kb/articles/why-minimum-and-maximum-prices-are-very-important",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-to-define-my-minimum-and-maximum-prices-through-the-general-strategy",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-do-i-reset-my-reference-prices",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-a-reference-price-14-9-2022",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-do-i-change-my-minimum-and-maximum-prices-product-by-product-in-the-interface",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-can-i-update-my-product-data-in-bulk-11-9-2022",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-oauth-mirakl",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-does-matching-work-on-mypricing-v3",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-a-marketplace",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-much-history-can-i-have-in-mypricing",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-do-we-integrate-via-ftp-or-url-file",
+    "https://help.boostmyshop.com/portal/en/kb/articles/what-is-buybox-predictor",
+    "https://help.boostmyshop.com/portal/en/kb/articles/which-marketplaces-are-compatible-with-mypricing",
+    "https://help.boostmyshop.com/portal/en/kb/articles/configuration-and-account-features",
+    "https://help.boostmyshop.com/portal/en/kb/articles/how-to-take-action-on-my-offers-in-competitions",
+    "https://help.boostmyshop.com/portal/en/kb/articles/is-it-possible-to-generate-reports-exports-from-the-application"
+]
+
+documents = SimpleWebPageReader(html_to_text=True).load_data(Input)
+
+index = GPTSimpleVectorIndex(documents)
+index.save_to_disk("./doc_qa.json")
+index2 = GPTSimpleVectorIndex.load_from_disk("./doc_qa.json")
+```
+
+#### Testing Qustion and Answering
+
+```python
+def querying_db(query: str):
+  response = index2.query(query, verbose=True)
+  return response
+
+tools = [
+    Tool(
+        name = "QueryingDB",
+        func=querying_db,
+        description="This function takes a query string as input and returns the most relevant answer from the documentation as output"
+    )]
+llm = OpenAI(temperature=0,max_tokens=300)
+
+#@markdown ### Test your agent by asking it a question
+
+query_string = "what is reference price in my mypricing dashboard" #@param {type:"string"}
+
+agent =  initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+
+result = agent.run(query_string)
+```
+
+#### Use Gradio to create ui
+
+```python
+import gradio as gr
+
+def querying_db(query: str):
+  response = index2.query(query, verbose=True)
+  return response
+
+tools = [
+    Tool(
+        name = "QueryingDB",
+        func=querying_db,
+        description="This function takes a query string as input and returns the most relevant answer from the documentation as output"
+    )
+]
+
+llm = OpenAI(temperature=0,max_tokens=400)
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description", verbose=True)
+
+def askQuestion(inputText):
+    result = agent.run(inputText + " explain in detail")
+    return result
+
+
+bot_examples = [
+    ["What are the steps to connect my sales channel to mypricing"],
+    ["How much does mypricing cost ?"],
+    ["What sales channels, can i connect to mypricing"],
+    ["use of channel health in mypricing"],
+    ["What is the main purpose of mypricing ?"],
+]
+
+bot = gr.Interface(fn=askQuestion, inputs=[gr.Textbox(label="Ask me anything about mypricing",lines=3,value="")], outputs=[gr.Textbox(label="Response", lines=3, value="")], title="MyPricing Assistant", description="Introducing MyPricing Assistant, your intelligent repricing app assistant! With the power of 🤗Gradio, 💡GPT-3, 🔗Langchain, and 📊GPTindex",examples=bot_examples)
+
+bot.launch(share=True,debug=True)
+```

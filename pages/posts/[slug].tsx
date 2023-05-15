@@ -4,6 +4,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import rehypeSlug from "rehype-slug";
 import rehypePrism from "rehype-prism-plus";
 import rehypeCodeTitles from "rehype-code-titles";
+import remarkGfm from "remark-gfm";
 
 import { IPost } from "../../types/post";
 import { getPost, getAllPosts } from "../../utils/mdxUtils";
@@ -38,7 +39,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
         alt={frontMatter.title}
       />
 
-      <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16">
+      <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16 prose-indigo">
         <MDXRemote {...source} />
       </article>
       <Footer />
@@ -65,6 +66,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         rehypeSlug, // add IDs to any h1-h6 tag that doesn't have one, using a slug made from its text
         rehypeCodeTitles,
         rehypePrism,
+        remarkGfm,
       ],
     },
   });

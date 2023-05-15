@@ -14,48 +14,125 @@ Hello everyone,
 
 I am excited to share with you my latest project, which I built for BoostMyShop. In this blog post, I will explain the motivation behind this project, how it works, what is the use of this project, and how I built it.
 
-## Motivation
+## Our problem
 
-BoostMyShop is a company that provides e-commerce solutions to businesses. One of their products is MyPricing, which is a repricing app that helps businesses to optimize their prices on different sales channels. MyPricing has a lot of features, and it can be overwhelming for new users to understand how to use it. Therefore, I decided to build an intelligent assistant that can help users to get answers to their questions about MyPricing.
+Boostmyshop mypricing is a powerful tool that can help online businesses boost their sales volume to the maximum, and our team recognizes the importance of providing exceptional customer support for the success of our project. However, this requires a significant amount of effort from our core team members.
 
-## How it works
+As we discovered the capabilities of ChatGPT, we wondered if we could develop a bot using its underlying technology, GPT-3, to handle basic queries about mypricing. Although ChatGPT itself does not have an API, we embarked on a journey to explore the feasibility of using GPT-3 to create a bot that could answer common technical questions related to mypricing.
 
-MyPricing Assistant is built using Langchain, Python, Gradio, and GPT-3. The first step is to get the content of the website link provided by the user and convert it into a vector. This is done using GPTSimpleVectorIndex. The vector is then stored in a JSON file. Langchain is used to communicate with GPT-3, which is used to answer user queries. The user can ask any question related to MyPricing, and the assistant will provide the most relevant answer from the documentation.
+## Fine tune gpt-3 ?
 
-To implement this project, I used the following libraries and tools:
+In order to make GPT-3 more knowledgeable about the specifics of mypricing, we needed to find a way to train it on our data. We identified the help center on Boostmyshop as a valuable source of information, as well as customer conversations which could provide valuable questions and answers to be fed to GPT-3.
 
-- `langchain` to communicate with the GPT-3 API and handle authentication.
-- `BeautifulSoup` to parse the HTML and extract the text content of the website links provided by the user.
-- `gradio` to create a simple user interface for the assistant.
-- `GPTSimpleVectorIndex` to convert the text content of the website links into vectors.
-- `json` to store the vectors in a JSON file.
-- `zero-shot-react-description` model from OpenAI to handle user queries.
+Initially, we considered using GPT-3's fine-tuning capability to create a customized model trained on mypricing knowledge base. However, the cost of $80 per retraining session was prohibitively expensive, especially if we wanted to retrain daily to keep our bot up-to-date with the latest changes in the application.
 
-## Use of this project
+As a result, we ultimately decided to move forward without fine-tuning.
 
-MyPricing Assistant is a useful tool for new users of MyPricing. It can help them to understand how to use the app and its features. It can also help them to troubleshoot any issues they may encounter while using the app. The assistant is available 24/7, and users can ask questions at any time.
+## GPT-Index to load data
 
-MyPricing Assistant can help users to:
+After scraping knowledge about mypricing from various sources such as Boostmyshop's main website, help center, and release note website, we had a wealth of information in text form. However, it was not practical to expect GPT-3 to process all of this information at once. To address this, we took the following steps:
 
-- Quickly find answers to their questions about MyPricing without having to search through the documentation manually.
-- Get detailed explanations of MyPricing features and how to use them.
-- Troubleshoot any issues they may encounter while using the app.
-- Save time and effort by providing them with quick and accurate answers to their questions.
-- Improve their understanding of the app and its features.
+1. We sliced the documents into smaller, more manageable chunks, with each chunk on a new line.
+2. We queried these chunks to identify the most relevant ones that could help answer the question.
+3. We provided GPT-3 with the most relevant chunks to assist in answering the question.
 
-Overall, MyPricing Assistant is a valuable tool for anyone who uses MyPricing. It can help users to get the most out of the app and improve their e-commerce business.
+To simplify the chunking and querying process, we turned to GPT-Index. This tool helped us streamline the data and enabled us to efficiently provide GPT-3 with the most relevant information.
 
-## How I built this project
+## Coverting Text to Vectors :
 
-I used Python to build this project. Here are the steps I followed:
+We start by creating an index of this data with the [GPTSimpleVectorIndex()](https://gpt-index.readthedocs.io/en/latest/guides/index_guide.html#vector-store-index). This will turn all the text data to vectors:
 
-1. I used the `BeautifulSoup` library to extract the text content of the website links provided by the user.
-2. I used the `GPTSimpleVectorIndex` class from the `gpt_index` library to convert the text content into vectors.
-3. I stored the vectors in a JSON file using the `json` library.
-4. I used the `langchain` library to communicate with the GPT-3 API and handle authentication.
-5. I used the `zero-shot-react-description` model from OpenAI to handle user queries.
-6. I used the `gradio` library to create a simple user interface for the assistant.
+![vector_store.webp](/image/work/mypricing-bot/vector_store.webp)
 
-## Overall
+This is how the words will be represented in vectors :
 
-MyPricing Assistant is an intelligent assistant that can help users of MyPricing to get answers to their questions. It is built using Langchain, Python, Gradio, and GPT-3. The assistant is available 24/7, and users can ask questions at any time. I hope this project will be useful to BoostMyShop and its users. Thank you for reading this blog post.
+![text2vec.png](/image/work/mypricing-bot/text2vec.png)
+
+## Querying vectors :
+
+Querying a vector store index involves fetching the top-k most similar Nodes, and passing those into our Response Synthesis module.
+
+![vector_store_query.webp](/image/work/mypricing-bot/vector_store_query.webp)
+
+Now, we've built a way to both store our chunks and query them.
+
+## Giving this knowledge to langChain :
+
+LangChain provides a standard interface for agents, a selection of agents to choose from, and examples of end to end agents. Agents involve an LLM making decisions about which Actions to take, taking that Action, seeing an Observation, and repeating that until done.
+
+> Large language models (LLMs) are emerging as a transformative technology, enabling developers to build applications that they previously could not. But using these LLMs in isolation is often not enough to create a truly powerful app - the real power comes when you are able to combine them with other sources of computation or knowledge.
+
+Next we need to give our LLM Agent (i.e. GPT-3) a way to use this knowledge. So let's give it [tools](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tools). In our case, we just have 1 tool - `querying_db`.
+
+Here's how you do it (check out the amazing [Langchain documentation](https://langchain.readthedocs.io/en/latest/modules/agents/tools.html?highlight=tools) to learn more):
+
+This will give the results in a text form.
+
+![final-result](/image/work/mypricing-bot/final-result.png)
+
+The result of the langchain agent with be the final answer showed in the image above.
+
+```python
+> Entering new AgentExecutor chain...
+ I need to find out how to connect my sales channel to mypricing
+Action: QueryingDB
+Action Input: How to connect my sales channel to mypricing> Top 1 nodes:
+> [Node b3ac943f-9a9d-496a-b09a-b64e3dedf4ad] [Similarity score:                     0.817745] from your competition, and become the
+customer's choice in your marketplace by monitoring your gl...
+> Searching in chunk: from your competition, and become the
+customer'...
+> Initial response:
+Boostmyshop myPricing's dynamic pricing tool can be easily connected to your sales channels and allows you to import your product catalogue quickly. To connect your sales channels to myPricing, you can follow the steps below:
+
+1. Log in to your myPricing account.
+2. Select the “Sales Channels” tab.
+3. Click on the “Connect” button next to the sales channel you want to connect.
+4. Follow the instructions to complete the connection.
+5. Once the connection is established, you can import your product catalogue.
+
+If you need assistance during the setup process, our team is available to provide support and guidance.
+> Refine context: 94% of customers compare prices when shopping o...
+> Refined response:
+
+Boostmyshop myPricing's dynamic pricing tool can be easily connected to your sales channels and allows you to import your product catalogue quickly. To connect your sales channels to myPricing, you can follow the steps below:
+
+1. Log in to your myPricing account.
+2. Select the “Sales Channels” tab.
+3. Click on the “Connect” button next to the sales channel you want to connect.
+4. Follow the instructions to complete the connection.
+5. Once the connection is established, you can import your product catalogue.
+
+With myPricing, you can turn your products into bestsellers without cutting your margins. Sign up now for a 15-day free trial to adopt dynamic repricing in your sales channels. If you need assistance during the setup process, our team is available to provide support and guidance.
+> [query] Total LLM token usage: 4221 tokens
+> [query] Total embedding token usage: 10 tokens
+
+Observation:
+
+Boostmyshop myPricing's dynamic pricing tool can be easily connected to your sales channels and allows you to import your product catalogue quickly. To connect your sales channels to myPricing, you can follow the steps below:
+
+1. Log in to your myPricing account.
+2. Select the “Sales Channels” tab.
+3. Click on the “Connect” button next to the sales channel you want to connect.
+4. Follow the instructions to complete the connection.
+5. Once the connection is established, you can import your product catalogue.
+
+With myPricing, you can turn your products into bestsellers without cutting your margins. Sign up now for a 15-day free trial to adopt dynamic repricing in your sales channels. If you need assistance during the setup process, our team is available to provide support and guidance.
+Thought: I now know the final answer
+Final Answer: To connect your sales channels to myPricing, log in to your myPricing account, select the “Sales Channels” tab, click on the “Connect” button next to the sales channel you want to connect, follow the instructions to complete the connection, and once the connection is established, you can import your product catalogue.
+
+> Finished chain.
+```
+
+## Creating UI with Gradio :
+
+Gradio is one of the *best ways to share* your machine learning model, API, or data science workflow with others is to create an *interactive app* that allows your users or colleagues to try out the demo in their browsers.
+
+Here are three reasons why you should use Gradio to create interactive apps:
+
+1. **Easy to Use**: Gradio allows you to build demos and share them all in Python with just a few lines of code. This means you don't have to worry about learning new programming languages or frameworks.
+2. **Efficient UI Creation**: One of the best things about Gradio is that it takes care of the UI for you. You don't need to spend time creating custom styles or layouts for your app. Instead, you can simply call the Gradio component and let it handle the UI. This frees up your time to focus on what you do best - building great machine learning models and workflows.
+3. **Highly Customizable**: Gradio is also highly flexible, so you can tailor your app to suit your specific needs. You can choose from a range of input and output types, such as images, text, and audio. This allows you to create a demo that truly showcases the power of your model or workflow.
+
+## Final App :
+
+![gradio-ui](/image/work/mypricing-bot/gradio-ui.png)

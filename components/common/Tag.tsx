@@ -34,7 +34,7 @@ export const Tag = ({
           <circle cx={4} cy={4} r={3} />
         </svg>
       )}
-      {icon}
+      {icon && <span>{icon}</span>}
       <span className={`text-sm ${color} first-letter:uppercase`}>{text}</span>
     </span>
   );

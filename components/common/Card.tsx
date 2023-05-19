@@ -13,7 +13,7 @@ interface ICard {
 const Card = ({ src, slug, roles }: ICard) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a className="p-4 rounded-xl hover:border-slate-200 hover:bg-white active:border-slate-300 border border-transparent transition-colors ease-in-out">
+      <a className="p-4 rounded-xl hover:border-slate-200 hover:bg-white/50 active:border-slate-300 border border-transparent transition-colors ease-in-out">
         <article className="flex flex-col items-start gap-2 md:gap-4 max-w-[520px] w-full">
           <img src={src} alt={src} className="object-contain" />
           <div className="flex flex-wrap gap-3">
@@ -21,16 +21,21 @@ const Card = ({ src, slug, roles }: ICard) => {
               const {
                 color = "text-gray-700",
                 backgroundColor = "bg-gray-200",
+                icon: IconComponent = null,
               } = TAG_COLOR[role] || {};
 
               return (
                 <Tag
-                  withDot
                   rounded
                   color={color}
                   backgroundColor={backgroundColor}
                   key={role}
                   text={role}
+                  icon={
+                    IconComponent ? (
+                      <IconComponent className={`h-4 w-4 ${color}`} />
+                    ) : null
+                  }
                 />
               );
             })}

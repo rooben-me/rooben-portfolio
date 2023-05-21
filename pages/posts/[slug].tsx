@@ -35,7 +35,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
         canonical="https://rooben.vercel.app/"
         openGraph={{
           url: `https://rooben.vercel.app/${router.query.slug}`,
-          title: frontMatter.title,
+          title: `Rooben Portfolio - ${frontMatter.title}`,
           description: frontMatter.description,
           type: "article",
           article: {

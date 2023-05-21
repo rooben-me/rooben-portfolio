@@ -5,20 +5,35 @@ import { getAllPosts } from "../utils/mdxUtils";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Crystals from "../components/Crystals";
-import RecentWork from "../components/RecentWork";
 import Footer from "../components/Footer";
+import MainSection from "../components/common/MainSection";
 
 type Props = {
-  posts: [IPost];
+  posts: IPost[];
 };
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
+  const projectPosts = posts.filter((post) => !post.roles.includes("fun"));
+  const funStuffPosts = posts.filter((post) => post.roles.includes("fun"));
   return (
     <section className="font-monda overflow-hidden relative">
       <div className="container mx-auto">
         <Navbar />
         <Header />
-        <RecentWork posts={posts} />
+
+        {/* Projects */}
+        <MainSection
+          posts={projectPosts}
+          title="Projects"
+          description="Includes Saas Application, Chrome extension projects"
+        />
+
+        {/* Fun stuff */}
+        <MainSection
+          posts={funStuffPosts}
+          title="Fun stuffs"
+          description="Things I am working in my free time"
+        />
 
         <Footer />
       </div>
@@ -42,6 +57,8 @@ export const getStaticProps: GetStaticProps = async () => {
     "draft",
   ]);
 
+  const filteredPosts = posts.filter((post) => !post.draft);
+
   // retunr the posts props
-  return { props: { posts } };
+  return { props: { posts: filteredPosts } };
 };

@@ -3,6 +3,7 @@ import {
   LightBulbIcon,
   PuzzlePieceIcon,
   WrenchScrewdriverIcon,
+  FaceSmileIcon,
 } from "@heroicons/react/24/solid";
 
 export let TAG_COLOR = {
@@ -10,6 +11,11 @@ export let TAG_COLOR = {
     color: "text-cyan-700",
     backgroundColor: "bg-cyan-100",
     icon: PuzzlePieceIcon,
+  },
+  fun: {
+    color: "text-fuchsia-700",
+    backgroundColor: "bg-fuchsia-100",
+    icon: FaceSmileIcon,
   },
   "Front end Development": {
     color: "text-green-700",

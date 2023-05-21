@@ -22,8 +22,14 @@ const RecentWork = ({ posts }: Props) => {
       </Text>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-6 md:gap-12 mt-6 lg:mt-12 w-full">
-        {filteredPosts.map(({ title, roles, slug, thumbnail }) => (
-          <Card key={title} src={thumbnail} slug={slug} roles={roles} />
+        {filteredPosts.map(({ title, roles, slug, date, thumbnail }) => (
+          <Card
+            key={title}
+            src={thumbnail}
+            slug={slug}
+            date={date}
+            roles={roles}
+          />
         ))}
       </div>
     </section>

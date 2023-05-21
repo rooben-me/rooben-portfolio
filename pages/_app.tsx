@@ -12,16 +12,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         title="Rooben Portfolio"
         titleTemplate="Rooben Portfolio"
         defaultTitle="Rooben Portfolio"
-        description="A full stack web developer, who loves to design and develop beautiful websites. I have been coding for over a year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them."
-        canonical="https://www.rooben.me/"
+        description="A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them."
+        canonical="https://rooben.vercel.app/"
         openGraph={{
-          url: "https://www.rooben.me/",
-          title: "Rooben Lovin",
+          url: "https://rooben.vercel.app/",
+          title: "Rooben",
           description:
-            "A full stack web developer, who loves to design and develop beautiful websites. I have been coding for over a year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them.",
+            "A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them.",
           images: [
             {
-              url: "/images/rooben-photo.png",
+              url: "/image/rooben-photo.png",
               width: 420,
               height: 420,
               alt: "A Picture of rooben",

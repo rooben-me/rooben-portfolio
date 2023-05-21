@@ -3,7 +3,7 @@ import {
   LightBulbIcon,
   PuzzlePieceIcon,
   WrenchScrewdriverIcon,
-} from "@heroicons/react/24/outline";
+} from "@heroicons/react/24/solid";
 
 export let TAG_COLOR = {
   "Product Design": {

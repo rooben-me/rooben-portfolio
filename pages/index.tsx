@@ -19,6 +19,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
         <Navbar />
         <Header />
         <RecentWork posts={posts} />
+
         <Footer />
       </div>
       <Crystals />

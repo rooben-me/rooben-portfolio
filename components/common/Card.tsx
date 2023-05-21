@@ -8,14 +8,16 @@ interface ICard {
   src: string;
   slug: string;
   roles: string[];
+  date: string;
 }
 
-const Card = ({ src, slug, roles }: ICard) => {
+const Card = ({ src, slug, roles, date }: ICard) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a className="p-4 rounded-xl hover:border-slate-200 hover:bg-white/50 active:border-slate-300 border border-transparent transition-colors ease-in-out">
+      <a className="p-4 rounded-xl hover:border-slate-200 hover:bg-white/50 active:ring-2 active:ring-primary-main border border-transparent transition-colors ease-in-out">
         <article className="flex flex-col items-start gap-2 md:gap-4 max-w-[520px] w-full">
           <img src={src} alt={src} className="object-contain" />
+
           <div className="flex flex-wrap gap-3">
             {roles.map((role) => {
               const {
@@ -45,11 +47,6 @@ const Card = ({ src, slug, roles }: ICard) => {
           <div className="text-green-700 bg-green-100 hidden"></div>
           <div className="text-orange-700 bg-orange-100 hidden"></div>
           <div className="text-red-700 bg-red-100 hidden"></div>
-
-          <span className="flex items-center gap-2 mt-3">
-            <EyeIcon className="w-4 h-4 text-slate-600" />
-            <span className="text-slate-600">View project</span>
-          </span>
         </article>
       </a>
     </Link>

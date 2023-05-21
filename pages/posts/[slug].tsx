@@ -23,6 +23,8 @@ type Props = {
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   const router = useRouter();
 
+  const publishedDate = new Date(frontMatter.date).toISOString();
+
   return (
     <>
       <NextSeo
@@ -35,6 +37,15 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
           url: `https://rooben.vercel.app/${router.query.slug}`,
           title: frontMatter.title,
           description: frontMatter.description,
+          type: "article",
+          article: {
+            publishedTime: publishedDate,
+            modifiedTime: publishedDate,
+            expirationTime: publishedDate,
+            section: "posts",
+            authors: ["rooben"],
+            tags: frontMatter.roles,
+          },
           images: [
             {
               url: frontMatter.thumbnailBanner,

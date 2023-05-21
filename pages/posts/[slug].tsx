@@ -11,6 +11,8 @@ import { getPost, getAllPosts } from "../../utils/mdxUtils";
 import { ParsedUrlQuery } from "querystring";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 
 // props type
 type Props = {
@@ -19,39 +21,63 @@ type Props = {
 };
 
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
+  const router = useRouter();
+
   return (
-    <section className="font-monda container mx-auto p-4">
-      <Navbar />
+    <>
+      <NextSeo
+        title={frontMatter.title}
+        titleTemplate={frontMatter.title}
+        defaultTitle="Rooben Portfolio"
+        description={frontMatter.description}
+        canonical="https://rooben.vercel.app/"
+        openGraph={{
+          url: `https://rooben.vercel.app/${router.query.slug}`,
+          title: frontMatter.title,
+          description: frontMatter.description,
+          images: [
+            {
+              url: frontMatter.thumbnailBanner,
+              width: 720,
+              height: 420,
+              alt: frontMatter.title,
+            },
+          ],
+        }}
+      />
+      <section className="font-monda container mx-auto p-4">
+        <Navbar />
 
-      <div className="flex flex-col py-12 md:py-16 my-8">
-        <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
-          {frontMatter.title}
-        </h1>
+        <div className="flex flex-col py-12 md:py-16 my-8">
+          <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
+            {frontMatter.title}
+          </h1>
 
-        <p className="text-lg md:text-xl text-center text-slate-600 mt-6">
-          {frontMatter.description}
-        </p>
+          <p className="text-lg md:text-xl text-center text-slate-600 mt-6">
+            {frontMatter.description}
+          </p>
 
-        {/* <span className="text-slate-600 text-center mt-12 ">
+          {/* <span className="text-slate-600 text-center mt-12 ">
           {new Date(frontMatter.date).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
             year: "numeric",
           })}
         </span> */}
-      </div>
+        </div>
 
-      <img
-        className="w-full rounded-lg lg:rounded-xl overflow-hidden"
-        src={frontMatter.thumbnailBanner}
-        alt={frontMatter.title}
-      />
+        <img
+          className="w-full rounded-lg lg:rounded-xl overflow-hidden"
+          src={frontMatter.thumbnailBanner}
+          alt={frontMatter.title}
+        />
 
-      <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16 prose-indigo">
-        <MDXRemote {...source} />
-      </article>
-      <Footer />
-    </section>
+        <article className="prose w-full max-w-prose md:prose-lg lg:prose-xl mx-auto mt-12 md:mt-16 prose-indigo">
+          <MDXRemote {...source} />
+        </article>
+        <Footer />
+      </section>
+    </>
   );
 };
 

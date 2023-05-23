@@ -14,7 +14,7 @@ interface ICard {
 const Card = ({ src, slug, roles, date }: ICard) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a className="md:p-4 rounded-xl hover:border-slate-200 hover:bg-white/50 active:ring-2 active:ring-primary-main border border-transparent transition-colors ease-in-out">
+      <a className="py-2 md:p-4 rounded-xl hover:border-slate-200 hover:bg-white/50 active:ring-2 active:ring-primary-main border border-transparent transition-colors ease-in-out">
         <article className="flex flex-col items-start gap-2 md:gap-4 max-w-[520px] w-full">
           <img src={src} alt={src} className="object-contain" />
 

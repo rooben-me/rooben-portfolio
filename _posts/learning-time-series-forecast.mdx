@@ -1,0 +1,338 @@
+---
+date: "2023-5-23"
+thumbnail: "/image/work/time-series-forecast/thumbnail.svg"
+thumbnailBanner: "/image/work/time-series-forecast/banner.svg"
+title: "Learning Time series Forecast"
+roles: ["research"]
+description: "Personal journey of trying out various time series models to find the best fit for my use case"
+draft: false
+---
+
+# Why Learn Time series forecast
+
+My current company _BoostMyShop_, an e-commerce company offers a variety of SaaS applications to help e-commerce sellers grow their businesses. One of our products, MyPricing, is a market monitoring and repricing application that helps sellers stay competitive in the market.'
+
+Recently, I've been intrigued by the potential of artificial intelligence (AI) and machine learning (ML) in improving our applications. I realized that time series prediction could be a valuable addition to MyPricing, so I decided to learn how to implement it.
+
+## Data Preparation
+
+I started by exporting order history data from MyPricing into a CSV file, which I then used as the dataset for my experiments.
+
+I split the dataset into training and testing sets, allowing me to train the models on one portion of the data and evaluate their performance on another.
+
+![data-preparation](/image/work/time-series-forecast/data-preparation.png)
+
+## Different Time series models
+
+During my research, I came across several ML models that are commonly used for time series prediction. These models use historical data to make predictions about future values of a variable, in this case, number of orders . Each of the models has its own strengths and weaknesses, so I decided to implement and compare them to determine which one would be the best fit for MyPricing.
+
+#### 1. Single Layer Small RNN (Recurrent Neural Network)
+
+The Single Layer Small RNN is a simple model with a single recurrent layer. This layer allows the model to take into account previous values in the time series when making predictions. The model is relatively easy to understand and implement, making it a good starting point for exploring time series prediction with ML.
+
+#### 2. Single Layer RNN
+
+The Single Layer RNN is similar to the Small RNN but with more neurons in the recurrent layer. This model is expected to have better performance due to its increased complexity. The model can capture more complex patterns in the data and make more accurate predictions.
+
+#### 3. GRU (Gated Recurrent Unit) with dropout
+
+The GRU with dropout model is a more advanced model that includes a gating mechanism to control the flow of information through the network. The dropout layers help prevent overfitting, making the model more robust. The model is able to capture dependencies in the data and make predictions that are more accurate thanthe simpler models.
+
+#### 4. Multi-layer RNN
+
+The Multi-layer RNN model consists of multiple recurrent layers stacked on top of each other. This model can capture even more complex patterns in the data than the Single Layer RNN, potentially leading to better predictions. The model is able to learn hierarchical representations of the data, which can be useful for modeling complex time series.
+
+#### 5. GRU
+
+The GRU model is similar to the GRU with dropout but without the dropout layers. This model is known for its ability to capture long-term dependencies in the data, making it a strong candidate for time series prediction. The model can learn and remember long-term patterns in the data, which can be useful for predicting trends over longer time periods.
+
+All of these models can be trained on the historical order data to make predictions about future number of orders.
+
+## Models Evaluation
+
+Once I had implemented all the models, I trained them on the training dataset and evaluated their performance on the testing dataset.
+
+![all-models](/image/work/time-series-forecast/all-models.png)
+
+To visualize the results, I plotted the actual number of orders and the predictions from each model.
+
+![individual-model](/image/work/time-series-forecast/individual-model.png)
+
+We have the visualization, but how can we determine the performance of each model? Welcome to the Mean Squared Error (MSE)
+
+#### Mean Squared Error (MSE)
+
+Mean Squared Error (MSE) is a way to measure how well a regression model (like a time-series forecasting model) is able to predict a set of values. It calculates the average of the squared differences between the predicted values and the actual values.
+
+A smaller MSE value means that the model is better at predicting the actual values.
+
+Think of it like a score, where a perfect score is 0, and the higher the score, the worse the model performs.
+
+| Model                  | MSE        |
+| ---------------------- | ---------- |
+| Single Layer Small RNN | 56.992458  |
+| GRU                    | 62.361303  |
+| GRU with dropout       | 63.860396  |
+| Single Layer RNN       | 141.982957 |
+| RNN                    | 217.592279 |
+
+> Lesser the MSE => Smaller is the error => Better the accuracy
+
+Based on the Mean Squared Error (MSE) metric we got, Single Layer Small RNN had the lowest error and performed the best for the number of orders prediction task in general. However, it's important to note that the performance of the models can vary depending on the specific dataset and problem being addressed.
+
+In my particular experiment, the **Single Layer Small RNN** performed the best. It's possible that the data had a simpler pattern that the Single Layer Small RNN was able to capture effectively, while the more complex models may have overfit the data or not been able to capture the relevant patterns as well. Additionally, the Single Layer Small RNN is a simpler model than the other models, which can be an advantage in terms of computational resources and ease of implementation.
+
+While more complex models may have the potential to perform better on more complex datasets, simpler models like the Single Layer Small RNN can still provide effective solutions in certain cases.
+
+> when working with machine learning models, it's important to evaluate their performance on multiple datasets to ensure that the model is robust and effectivein a variety of scenarios.
+
+## Learning outcomes
+
+During this project in time series prediction, I learned how these technologies can improve e-commerce applications. I discovered that choosing the right ML model is crucial for solving specific problems and datasets. By testing multiple models, I gained hands-on experience with their strengths and weaknesses and learned how to balance complexity and performance.
+
+I also learned the importance of evaluating model performance on multiple datasets to ensure that the model is effective in different scenarios. Overall, this project expanded my knowledge and skills in AI and ML.
+
+## Code Explanation
+
+Let's dive into the code!
+
+1. First, I imported the necessary libraries and set the plotting style to 'fivethirtyeight'.
+
+```python
+import os
+import numpy as np
+import pandas as pd
+from keras.optimizers import SGD
+from keras.models import Sequential
+from keras.layers import Dense, LSTM, Dropout, GRU, SimpleRNN
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+plt.style.use('fivethirtyeight')
+```
+
+2. In the `create_files_dict` function, I read the CSV files containing the order data and stored them in a dictionary with the file_key as the key and the data as the value.
+
+```python
+def create_files_dict(pth='/content/order'):
+    files = os.listdir(pth)
+    all_data = dict()
+
+    for file in files:
+        file_key = file.split('_')[0]
+        file_path = os.path.join(pth, file)
+        data = pd.read_csv(file_path, index_col='Date', parse_dates=['Date'])
+        all_data[file_key] = data
+
+    return all_data
+```
+
+3. The `plot_data` function helps me visualize the training and test sets.
+
+```python
+def plot_data(data, market_name):
+    data["count"][:'2022'].plot(figsize=(16, 4), legend=True)
+    data["count"]['2023':].plot(figsize=(16, 4), legend=True)
+    plt.legend(['Training set (Before 2022)', 'Test set (2022 and beyond)'])
+    plt.title('{} Orders'.format(market_name))
+    plt.pause(1)
+    plt.close()
+```
+
+4. In the `create_dl_train_test_split` function, I split the data into training and test sets, scaled the training set using MinMaxScaler, and prepared the input data for the deep learning models.
+
+```python
+def create_dl_train_test_split(all_data):
+    training_set = all_data.loc[:'2022', 'count'].values
+    test_set = all_data.loc['2023':, 'count'].values
+    sc = MinMaxScaler(feature_range=(0, 1))
+    training_set_scaled = sc.fit_transform(training_set.reshape(-1, 1))
+
+    X_train, y_train = [], []
+    for i in range(60, len(training_set_scaled)):
+        X_train.append(training_set_scaled[i - 60:i, 0])
+        y_train.append(training_set_scaled[i, 0])
+
+    X_train, y_train = np.array(X_train), np.array(y_train)
+    X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
+
+    total_data = pd.concat((all_data["count"][:'2022'], all_data["count"]['2023':]), axis=0)
+    inputs = total_data[len(total_data) - len(test_set) - 60:].values
+    inputs = inputs.reshape(-1, 1)
+    inputs = sc.transform(inputs)
+
+    X_test = []
+    for i in range(60, len(inputs)):
+        X_test.append(inputs[i - 60:i, 0])
+
+    X_test = np.array(X_test)
+    X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
+
+    return X_train, y_train, X_test, sc
+
+```
+
+5. I created various deep learning models using Keras, including a single-layer small RNN (`create_single_layer_small_rnn_model`), a single-layer RNN (`create_single_layer_rnn_model`), a multi-layer RNN (`create_rnn_model`), a GRU model (`create_GRU_model`), and a GRU model with dropout (`create_GRU_with_drop_out_model`).
+
+```python
+def create_single_layer_small_rnn_model(X_train, y_train, X_test, sc):
+    model = Sequential()
+    model.add(SimpleRNN(6))
+    model.add(Dense(1))
+    model.compile(optimizer='rmsprop', loss='mean_squared_error')
+    model.fit(X_train, y_train, epochs=100, batch_size=150)
+    scaled_preds = model.predict(X_test)
+    test_preds = sc.inverse_transform(scaled_preds)
+
+    return model, test_preds
+
+
+def create_single_layer_rnn_model(X_train, y_train, X_test, sc):
+    model = Sequential()
+    model.add(SimpleRNN(32))
+    model.add(Dense(1))
+    model.compile(optimizer='rmsprop', loss='mean_squared_error')
+    model.fit(X_train, y_train, epochs=100, batch_size=150)
+    scaled_preds = model.predict(X_test)
+    test_preds = sc.inverse_transform(scaled_preds)
+
+    return model, test_preds
+
+
+def create_rnn_model(X_train, y_train, X_test, sc):
+    model = Sequential()
+    model.add(SimpleRNN(32, return_sequences=True))
+    model.add(SimpleRNN(32, return_sequences=True))
+    model.add(SimpleRNN(32, return_sequences=True))
+    model.add(SimpleRNN(32))
+    model.add(Dense(1))
+    model.compile(optimizer='rmsprop', loss='mean_squared_error')
+    model.fit(X_train, y_train, epochs=100, batch_size=150)
+    scaled_preds = model.predict(X_test)
+    test_preds = sc.inverse_transform(scaled_preds)
+
+    return model, test_preds
+
+
+def create_GRU_model(X_train, y_train, X_test, sc):
+    regressorGRU = Sequential()
+    regressorGRU.add(GRU(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1), activation='tanh'))
+    regressorGRU.add(GRU(units=50, return_sequences=True, activation='tanh'))
+    regressorGRU.add(GRU(units=50, return_sequences=True, activation='tanh'))
+    regressorGRU.add(GRU(units=50, activation='tanh'))
+    regressorGRU.add(Dense(units=1))
+    regressorGRU.compile(optimizer=SGD(lr=0.01, decay=1e-7, momentum=0.9, nesterov=False), loss='mean_squared_error')
+    regressorGRU.fit(X_train, y_train, epochs=50, batch_size=150)
+    GRU_predicted_market_order = regressorGRU.predict(X_test)
+    GRU_predicted_market_order = sc.inverse_transform(GRU_predicted_market_order)
+
+    return regressorGRU, GRU_predicted_market_order
+
+
+def create_GRU_with_drop_out_model(X_train, y_train, X_test, sc):
+    regressorGRU = Sequential()
+    regressorGRU.add(GRU(units=50, return_sequences=True, input_shape=(X_train.shape[1], 1), activation='tanh'))
+    regressorGRU.add(Dropout(0.2))
+    regressorGRU.add(GRU(units=50, return_sequences=True, activation='tanh'))
+    regressorGRU.add(Dropout(0.2))
+    regressorGRU.add(GRU(units=50, return_sequences=True, activation='tanh'))
+    regressorGRU.add(Dropout(0.2))
+    regressorGRU.add(GRU(units=50, activation='tanh'))
+    regressorGRU.add(Dropout(0.2))
+    regressorGRU.add(Dense(units=1))
+    regressorGRU.compile(optimizer=SGD(lr=0.01, decay=1e-7, momentum=0.9, nesterov=False), loss='mean_squared_error')
+    regressorGRU.fit(X_train, y_train, epochs=50, batch_size=150)
+    GRU_predicted_market_order = regressorGRU.predict(X_test)
+    GRU_predicted_market_order = sc.inverse_transform(GRU_predicted_market_order)
+
+    return regressorGRU, GRU_predicted_market_order
+```
+
+6. The `plot_full_data_with_predictions` function plots the full dataset along with the predictions made by each model.
+
+```python
+def plot_full_data_with_predictions(actuals, market_name, small_one_layer_preds, one_layer_preds, gru_drop_preds, rnn_preds, gru_preds):
+    plt.figure(figsize=(20, 10))
+
+    models = [
+        ('Single Layer Small RNN', small_one_layer_preds),
+        ('Single Layer RNN', one_layer_preds),
+        ('GRU with dropout', gru_drop_preds),
+        ('RNN', rnn_preds),
+        ('GRU', gru_preds)
+    ]
+
+    actual_values = actuals['2023':].values[:-1]
+
+    plt.plot(actuals.values, label='Full dataset')
+
+    for model_name, preds in models:
+        preds = preds[:len(actual_values)]  # Ensure the length of predictions is the same as actual_values
+        plt.plot(range(len(actuals) - len(actual_values), len(actuals)), preds, label=model_name + ' predictions')
+
+    plt.title('{} Full Dataset with AI Predictions'.format(market_name))
+    plt.legend()
+    plt.pause(1)
+    plt.close()
+
+```
+
+7. In the `plot_results` function, I plotted the actual values against the predictions made by each model and calculated the Mean Squared Error (MSE) for each model.
+
+```python
+def plot_results(actuals, market_name, small_one_layer_preds, one_layer_preds, gru_drop_preds, rnn_preds, gru_preds):
+    fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(30, 15))
+    axes = axes.ravel()
+
+    models = [
+        ('Single Layer Small RNN', small_one_layer_preds),
+        ('Single Layer RNN', one_layer_preds),
+        ('GRU with dropout', gru_drop_preds),
+        ('RNN', rnn_preds),
+        ('GRU', gru_preds)
+    ]
+
+    mse_results = []
+
+    actual_values = actuals['2023':].values[:-1]
+
+    for i, (model_name, preds) in enumerate(models):
+        preds = preds[:len(actual_values)]  # Ensure the length of predictions is the same as actual_values
+        axes[i].plot(actual_values, label='Actual values')
+        axes[i].plot(preds, label=model_name + ' predictions')
+        axes[i].set_title('{} Predictions vs. Actual'.format(model_name))
+        axes[i].legend()
+
+        mse = mean_squared_error(actual_values, preds)
+        mse_results.append((model_name, mse))
+
+    plt.tight_layout()
+    plt.pause(1)
+    plt.close()
+
+    mse_df = pd.DataFrame(mse_results, columns=['Model', 'MSE'])
+    mse_df.sort_values(by='MSE', ascending=True, inplace=True)
+    print("Mean Squared Error (MSE) for each model:")
+    print(mse_df)
+
+```
+
+8. Finally, in the `main` section of the code, I looped through each method, prepared the data, trained the models, and visualized the results.
+
+```python
+if __name__ == '__main__':
+    all_data = create_files_dict()
+    for market_name, market_data in all_data.items():
+
+        X_train, y_train, X_test, sc = create_dl_train_test_split(market_data)
+
+        small_single_layer_rnn, small_one_layer_preds = create_single_layer_small_rnn_model(X_train, y_train, X_test, sc)
+        single_layer_rnn, one_layer_preds = create_single_layer_rnn_model(X_train, y_train, X_test, sc)
+        rnn_model, rnn_preds = create_rnn_model(X_train, y_train, X_test, sc)
+        gru_model, gru_preds = create_GRU_model(X_train, y_train, X_test, sc)
+        gru_drop_model, gru_drop_preds = create_GRU_with_drop_out_model(X_train, y_train, X_test, sc)
+
+        plot_data(market_data, market_name)
+        plot_results(market_data, market_name, small_one_layer_preds, one_layer_preds, gru_drop_preds, rnn_preds, gru_preds)
+        plot_full_data_with_predictions(market_data, market_name, small_one_layer_preds, one_layer_preds, gru_drop_preds, rnn_preds, gru_preds)
+```

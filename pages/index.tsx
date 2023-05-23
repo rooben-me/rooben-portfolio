@@ -13,8 +13,8 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
-  const projectPosts = posts.filter((post) => !post.roles.includes("fun"));
-  const funStuffPosts = posts.filter((post) => post.roles.includes("fun"));
+  const projectPosts = posts.filter((post) => !post.roles.includes("research"));
+  const researchPosts = posts.filter((post) => post.roles.includes("research"));
   return (
     <section className="font-monda overflow-hidden relative">
       <div className="container mx-auto">
@@ -28,11 +28,11 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
           description="Includes Saas Application, Chrome extension projects"
         />
 
-        {/* Fun stuff */}
+        {/* Research */}
         <MainSection
-          posts={funStuffPosts}
-          title="Fun stuffs"
-          description="Things I am working in my free time"
+          posts={researchPosts}
+          title="Research"
+          description="Includes machine learning, and artificial intelligence projects"
         />
 
         <Footer />

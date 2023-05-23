@@ -16,7 +16,7 @@ const MainSection = ({ posts, title, description }: Props) => {
   return (
     <section
       id={title.toLowerCase().replace(" ", "-")}
-      className="mt-24 min-h-screen p-4 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
+      className="mt-24 p-4 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
     >
       <Title>{title}</Title>
 

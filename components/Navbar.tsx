@@ -14,8 +14,8 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
       href: "/#projects",
     },
     {
-      name: "Fun stuffs",
-      href: "/#fun-stuffs",
+      name: "Research",
+      href: "/#research",
     },
   ];
 

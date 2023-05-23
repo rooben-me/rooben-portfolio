@@ -3,7 +3,7 @@ import {
   LightBulbIcon,
   PuzzlePieceIcon,
   WrenchScrewdriverIcon,
-  FaceSmileIcon,
+  BuildingOfficeIcon,
 } from "@heroicons/react/24/solid";
 
 export let TAG_COLOR = {
@@ -12,10 +12,10 @@ export let TAG_COLOR = {
     backgroundColor: "bg-cyan-100",
     icon: PuzzlePieceIcon,
   },
-  fun: {
+  research: {
     color: "text-fuchsia-700",
     backgroundColor: "bg-fuchsia-100",
-    icon: FaceSmileIcon,
+    icon: AcademicCapIcon,
   },
   "Front end Development": {
     color: "text-green-700",
@@ -25,7 +25,7 @@ export let TAG_COLOR = {
   "Product Owner": {
     color: "text-orange-700",
     backgroundColor: "bg-orange-100",
-    icon: AcademicCapIcon,
+    icon: BuildingOfficeIcon,
   },
   "Design and Development": {
     color: "text-red-700",

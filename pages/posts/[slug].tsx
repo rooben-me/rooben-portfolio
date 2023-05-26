@@ -23,7 +23,11 @@ type Props = {
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   const router = useRouter();
 
-  const publishedDate = new Date(frontMatter.date).toISOString();
+  const publishedDate = new Date(frontMatter.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <>

@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import Crystals from "../components/Crystals";
 import Footer from "../components/Footer";
 import MainSection from "../components/common/MainSection";
+import AiGenerated from "../components/section/AiGenerated";
 
 type Props = {
   posts: IPost[];
@@ -34,6 +35,14 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
           title="Research"
           description="Includes machine learning, and artificial intelligence projects"
         />
+
+        {/* Ai generated Images */}
+        {/* <MainSection
+          content={<AiGenerated />}
+          isPost={false}
+          title="Images"
+          description="Includes Ai generated images and artwork"
+        /> */}
 
         <Footer />
       </div>

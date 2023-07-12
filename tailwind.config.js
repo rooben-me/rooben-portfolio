@@ -10,11 +10,11 @@ module.exports = {
       colors: {
         "primary-main": "#5F2EEA",
         "primary-dark": "#2A00A2",
-        "title": "#14142B",
-        "body": "#4E4B66",
-        "line": "#D9DBE9",
-        "link": "#716C8D",
-        "background": "#F7F7FC"
+        title: "#14142B",
+        body: "#4E4B66",
+        line: "#D9DBE9",
+        link: "#716C8D",
+        background: "#F7F7FC",
       },
       fontFamily: {
         monda: ["Monda", "sans-serif"],

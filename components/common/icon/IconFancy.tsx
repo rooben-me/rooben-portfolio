@@ -37,13 +37,13 @@ const IconFancy = ({ size = "medium" }: IconFancyProps) => {
       <IconStar
         width={width}
         height={height}
-        className="absolute -top-2 left-6 text-purple-5"
+        className="absolute -top-2 left-6 text-violet-500 animate-blink"
       />
 
       <IconStar
         width={width - 3}
         height={height - 3}
-        className="absolute -bottom-2 left-16 text-purple-500"
+        className="absolute -bottom-2 left-16 text-purple-500 animate-blink"
       />
     </>
   );

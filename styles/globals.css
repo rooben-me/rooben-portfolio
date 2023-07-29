@@ -232,3 +232,34 @@ pre {
     background-position: 0% 50%;
   }
 }
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+    transform: rotate(0);
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: rotate(45deg);
+    transform: scale(0.7);
+  }
+
+  67% {
+    opacity: 0.7;
+  }
+
+  86% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0);
+    transform: scale(1);
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}

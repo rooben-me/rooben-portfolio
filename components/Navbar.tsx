@@ -28,14 +28,14 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
     <nav
       className={`${
         isFooter ? "flex flex-wrap" : "hidden md:flex"
-      } md:flex-1 justify-center gap-4 md:gap-16 md:mx-auto md:items-center`}
+      } md:flex-1 justify-center gap-4 md:gap-8 lg:gap-12 xl:gap-16 md:mx-auto md:items-center`}
     >
       {navItems.map(({ name, href }) => (
         <Link key={name} href={href}>
           <a
             className={`${
               isFooter ? "" : ""
-            } text-link text-lg hover:text-primary-main relative transition-colors ease-in-out duration-500`}
+            } text-link text-lg hover:text-primary-main  relative transition-colors ease-in-out duration-500`}
           >
             {name === "AI Artwork" && <IconFancy />}
             <span className="truncate">{name}</span>

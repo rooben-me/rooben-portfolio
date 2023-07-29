@@ -71,7 +71,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                   <div className="relative pb-1/1 group">
                     <Image
                       alt="ai image"
-                      className="transform rounded-lg brightness-90 transition will-change-auto object-cover absolute w-full h-full group-hover:brightness-110"
+                      className="transform rounded-xl brightness-90 transition will-change-auto object-cover absolute w-full h-full group-hover:brightness-110"
                       style={{ transform: "translate3d(0, 0, 0)" }}
                       placeholder="blur"
                       blurDataURL={blurDataUrl}

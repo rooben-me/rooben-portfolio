@@ -213,3 +213,22 @@ pre {
 .swiper-pagination-bullet-active {
   background-color: #2f54eb !important;
 }
+
+.gradient-animation {
+  background-image: linear-gradient(45deg, #2532dc, #5720cd, #a410c8, #ea1faa);
+
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

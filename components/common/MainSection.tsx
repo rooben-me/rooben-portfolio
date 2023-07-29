@@ -30,7 +30,7 @@ const MainSection = ({
 
       <Text>{description}</Text>
 
-      <div className="mt-6 lg:mt-12">
+      <div className="mt-6 lg:mt-12 w-full">
         {isPost ? (
           <div
             className={`grid ${gridCols} place-items-center gap-6 md:gap-12 w-full`}

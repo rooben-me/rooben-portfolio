@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import roobenlogo from "../public/image/rooben-logo.svg";
+import IconFancy from "./common/icon/IconFancy";
 
 export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
   const navItems = [
@@ -26,16 +27,17 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
   return (
     <nav
       className={`${
-        isFooter ? "flex" : "hidden md:flex"
-      } md:flex-1 justify-center gap-12 md:gap-16 md:mx-auto md:items-center`}
+        isFooter ? "flex flex-wrap" : "hidden md:flex"
+      } md:flex-1 justify-center gap-4 md:gap-16 md:mx-auto md:items-center`}
     >
       {navItems.map(({ name, href }) => (
         <Link key={name} href={href}>
           <a
             className={`${
-              isFooter ? "pb-6" : ""
-            } text-link text-lg hover:text-primary-main transition-colors ease-in-out duration-500`}
+              isFooter ? "" : ""
+            } text-link text-lg hover:text-primary-main relative transition-colors ease-in-out duration-500`}
           >
+            {name === "AI Artwork" && <IconFancy />}
             <span className="truncate">{name}</span>
           </a>
         </Link>

@@ -63,12 +63,12 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       <section className="font-monda container mx-auto p-4">
         <Navbar />
 
-        <div className="flex flex-col py-12 md:py-16 my-8">
+        <div className="flex flex-col py-4 md:py-16 my-8">
           <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
             {frontMatter.title}
           </h1>
 
-          <p className="text-lg md:text-xl text-center text-slate-600 mt-6">
+          <p className="text-lg md:text-xl text-center text-slate-600 mt-6 p-4">
             {frontMatter.description}
           </p>
         </div>

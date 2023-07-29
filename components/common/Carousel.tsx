@@ -36,8 +36,11 @@ export default function Carousel({
       >
         <Image
           src={currentPhoto.blurDataUrl}
-          className="pointer-events-none h-full w-full"
+          className="pointer-events-none h-full w-full aspect-auto"
           alt="blurred background"
+          layout="fixed"
+          width={480}
+          height={480}
           priority={true}
         />
       </button>

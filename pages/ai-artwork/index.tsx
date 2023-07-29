@@ -3,8 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
 import Modal from "../../components/common/Modal";
+import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import cloudinary from "../../utils/cloudinary";
 import getBase64ImageUrl from "../../utils/generateBlurPlaceholder";
@@ -16,32 +16,22 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   const { photoId } = router.query;
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
 
-  const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
-
-  // useEffect(() => {
-  //   // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-  //   if (lastViewedPhoto && !photoId) {
-  //     lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-  //     setLastViewedPhoto(null);
-  //   }
-  // }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
-
   return (
     <>
       <Head>
-        <title>Rooben - Ai art</title>
+        <title>Rooben - ai artwork</title>
       </Head>
       <section className="font-monda overflow-hidden relative">
         <div className="container mx-auto">
           <Navbar />
         </div>
 
-        <div className="flex flex-col py-12 md:py-16 my-8">
+        <div className="flex flex-col py-4 md:py-16 my-8">
           <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
             AI Artwork
           </h1>
 
-          <p className="text-lg md:text-xl text-center text-slate-600 mt-6">
+          <p className="text-lg md:text-xl text-center text-slate-600 mt-6 p-4">
             Experimental collection of images I created in my free time using ai
           </p>
         </div>
@@ -62,9 +52,6 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                   key={id}
                   href={`/ai-artwork/?photoId=${id}`}
                   as={`/ai-artwork/p/${id}`}
-                  ref={
-                    id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null
-                  }
                   shallow
                   className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                 >
@@ -84,6 +71,8 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
             )}
           </div>
         </main>
+
+        <Footer />
       </section>
     </>
   );

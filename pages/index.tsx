@@ -40,7 +40,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
         <MainSection
           content={<AiGenerated />}
           isPost={false}
-          title="Images"
+          title="AI Artwork"
           description="Includes Ai generated images and artwork"
         />
 

@@ -17,6 +17,10 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
       name: "Research",
       href: "/#research",
     },
+    {
+      name: "AI Artwork",
+      href: "/ai-artwork",
+    },
   ];
 
   return (
@@ -32,7 +36,7 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
               isFooter ? "pb-6" : ""
             } text-link text-lg hover:text-primary-main transition-colors ease-in-out duration-500`}
           >
-            <span>{name}</span>
+            <span className="truncate">{name}</span>
           </a>
         </Link>
       ))}
@@ -42,7 +46,7 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
 
 const Navbar = () => {
   return (
-    <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between xl:grid xl:place-items-center xl:grid-cols-3 gap-6">
+    <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between lg:grid lg:place-items-center lg:grid-cols-3 gap-6">
       <Link href="/">
         <a>
           <Image

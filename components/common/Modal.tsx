@@ -23,7 +23,7 @@ export default function Modal({
   const [curIndex, setCurIndex] = useState(index);
 
   function handleClose() {
-    router.push("/ai-image", undefined, { shallow: true });
+    router.push("/ai-artwork", undefined, { shallow: true });
     onClose();
   }
 
@@ -38,7 +38,7 @@ export default function Modal({
       {
         query: { photoId: newVal },
       },
-      `/ai-image/p/${newVal}`,
+      `/ai-artwork/p/${newVal}`,
       { shallow: true }
     );
   }

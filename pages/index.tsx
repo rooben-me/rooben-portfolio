@@ -29,19 +29,14 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
           description="Includes Saas Application, Chrome extension projects"
         />
 
+        {/* Ai generated Images */}
+        <AiGenerated />
+
         {/* Research */}
         <MainSection
           posts={researchPosts}
           title="Research"
           description="Includes machine learning, and artificial intelligence projects"
-        />
-
-        {/* Ai generated Images */}
-        <MainSection
-          content={<AiGenerated />}
-          isPost={false}
-          title="AI Artwork"
-          description="Includes Ai generated images and artwork"
         />
 
         <Footer />

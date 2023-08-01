@@ -15,27 +15,27 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
       href: "/#projects",
     },
     {
-      name: "Research",
-      href: "/#research",
-    },
-    {
       name: "AI Artwork",
       href: "/ai-artwork",
+    },
+    {
+      name: "Research",
+      href: "/#research",
     },
   ];
 
   return (
     <nav
       className={`${
-        isFooter ? "flex flex-wrap" : "hidden md:flex"
-      } md:flex-1 justify-center gap-4 md:gap-8 lg:gap-12 xl:gap-16 md:mx-auto md:items-center`}
+        isFooter ? "flex flex-wrap" : "hidden lg:flex"
+      } lg:flex-1 justify-center gap-8 xl:gap-16 lg:mx-auto lg:items-center`}
     >
       {navItems.map(({ name, href }) => (
         <Link key={name} href={href}>
           <a
             className={`${
               isFooter ? "" : ""
-            } text-link text-lg hover:text-primary-main  relative transition-colors ease-in-out duration-500`}
+            } text-link text-lg hover:text-primary-main relative transition-colors ease-in-out duration-500`}
           >
             {name === "AI Artwork" && <IconFancy />}
             <span className="truncate">{name}</span>
@@ -48,7 +48,7 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
 
 const Navbar = () => {
   return (
-    <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between lg:grid lg:place-items-center lg:grid-cols-3 gap-6">
+    <section className="z-50 p-4 m-4 flex items-center justify-center md:justify-between gap-6">
       <Link href="/">
         <a>
           <Image

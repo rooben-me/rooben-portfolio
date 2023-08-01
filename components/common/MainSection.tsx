@@ -24,7 +24,7 @@ const MainSection = ({
   return (
     <section
       id={title.toLowerCase().replace(" ", "-")}
-      className="mt-24 p-4 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
+      className="mt-24 p-4 md:p-0 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
     >
       <Title>{title}</Title>
 

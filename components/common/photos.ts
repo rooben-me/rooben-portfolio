@@ -7,7 +7,6 @@ const unsplashPhotos = [
   { id: "8gVv6nxq6gY", width: 1080, height: 800 },
   { id: "Dhmn6ete6g8", width: 1080, height: 1620 },
   { id: "RkBTPqPEGDo", width: 1080, height: 720 },
-  { id: "Yizrl9N_eDA", width: 1080, height: 721 },
   { id: "KG3TyFi0iTU", width: 1080, height: 1620 },
   { id: "Jztmx9yqjBw", width: 1080, height: 607 },
   { id: "-heLWtuAN3c", width: 1080, height: 608 },

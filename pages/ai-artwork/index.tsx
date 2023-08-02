@@ -19,7 +19,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
   return (
     <>
       <Head>
-        <title>Rooben - ai artwork</title>
+        <title>Ai artwork - Rooben - UI Engineer | Portfolio</title>
       </Head>
       <section className="font-monda overflow-hidden relative">
         <div className="container mx-auto">

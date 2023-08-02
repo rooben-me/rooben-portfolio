@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <NextSeo
         title="Rooben - UI Engineer | Portfolio"
-        titleTemplate="Rooben - UI Engineer | Portfolio"
+        titleTemplate="%s - Rooben - UI Engineer | Portfolio"
         defaultTitle="Rooben"
         description="A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts."
         canonical="https://rooben.site/"
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             "A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts.",
           images: [
             {
-              url: "https://www.rooben.site/image/rooben-photo.png",
+              url: "https://www.rooben.site/image/rooben-photo-rec.png",
               width: 420,
               height: 420,
               alt: "Picture of rooben - UI Engineer",

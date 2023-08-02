@@ -9,24 +9,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo
-        title="Rooben Portfolio"
-        titleTemplate="Rooben Portfolio"
-        defaultTitle="Rooben Portfolio"
-        description="A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them."
-        canonical="https://rooben.vercel.app/"
+        title="Rooben - UI Engineer | Portfolio"
+        titleTemplate="%s | Rooben"
+        defaultTitle="Rooben"
+        description="A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts."
+        canonical="https://rooben.site/"
         openGraph={{
-          url: "https://rooben.vercel.app/",
-          title: "Rooben",
+          url: "https://rooben.site/",
+          title: "Rooben - UI Engineer | Portfolio",
           description:
-            "A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts and also teach others through them.",
+            "A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts.",
           images: [
             {
               url: "/image/rooben-photo.png",
               width: 420,
               height: 420,
-              alt: "A Picture of rooben",
+              alt: "Picture of rooben - UI Engineer",
             },
           ],
+          siteName: "Rooben Portfolio",
         }}
       />
 

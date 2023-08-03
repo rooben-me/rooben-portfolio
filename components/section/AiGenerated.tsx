@@ -6,7 +6,7 @@ const AiGenerated = () => {
   return (
     <section
       id="ai-artwork"
-      className="mt-24 p-4 md:p-0 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
+      className="mt-24 p-4 xl:p-0 flex flex-col items-center justify-center w-full mx-auto max-w-[68rem]"
     >
       <div
         style={{

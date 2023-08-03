@@ -35,7 +35,7 @@ export const InterLinks = ({ isFooter = false }: { isFooter?: boolean }) => {
           <a
             className={`${
               isFooter ? "" : ""
-            } text-link text-lg hover:text-primary-main relative transition-colors ease-in-out duration-500`}
+            } text-link text-lg w-32 hover:text-primary-main flex items-center justify-center relative transition-colors ease-in-out duration-500`}
           >
             {name === "AI Artwork" && <IconFancy />}
             <span className="truncate">{name}</span>
@@ -65,7 +65,7 @@ const Navbar = () => {
       <InterLinks />
 
       <Link href="mailto:rubankumar.nkl@gmail.com">
-        <a className="hidden relative primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">
+        <a className="hidden w-40 relative primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">
           <span>Contact me</span>
           <svg
             className="link__graphic link__graphic--stroke link__graphic--scribble"

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import roobenPhoto from "../public/image/rooben-photo.png";
-import { Text, Title } from "./common/Typography";
+import roobenPhoto from "../../public/image/rooben-photo.png";
+import { Text, Title } from "../common/Typography";
 
 const Header = () => {
   return (

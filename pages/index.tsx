@@ -2,12 +2,12 @@ import type { NextPage, GetStaticProps } from "next";
 import { IPost } from "../types/post";
 import { getAllPosts } from "../utils/mdxUtils";
 
-import Header from "../components/Header";
+import Header from "../components/section/Header";
 import Navbar from "../components/Navbar";
 import Crystals from "../components/Crystals";
 import Footer from "../components/Footer";
 import MainSection from "../components/common/MainSection";
-import AiGenerated from "../components/section/AiGenerated";
+import AiGenerated from "../components/section/AiGenerated/AiGenerated";
 
 type Props = {
   posts: IPost[];

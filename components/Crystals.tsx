@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import crystalImage from "../public/image/crystals.png";
+import crystalImage from "../public/image/crystals.webp";
 
 const Crystals = () => {
   return (

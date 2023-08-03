@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import roobenPhoto from "../public/image/rooben-photo.png";
+import roobenPhoto from "../public/image/rooben-photo.webp";
 import { Text, Title } from "./common/Typography";
 
 const Header = () => {

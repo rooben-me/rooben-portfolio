@@ -19,6 +19,8 @@ const Card = ({ src, slug, roles, date }: ICard) => {
           <img
             src={src}
             alt={src}
+            width={240}
+            height={240}
             className="object-contain bg-gray-100 w-full min-h-[240px] rounded-xl"
           />
 

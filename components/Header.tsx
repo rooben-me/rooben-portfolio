@@ -5,7 +5,7 @@ import { Text, Title } from "./common/Typography";
 import useRainbow from "../hooks/use-rainbow.hook";
 
 const Header = () => {
-  const intervalDelay = 1300;
+  const intervalDelay = 2400;
   const colors = useRainbow({ intervalDelay });
   const transitionDelay = intervalDelay * 1.25;
 
@@ -16,15 +16,19 @@ const Header = () => {
       id="hero"
       className="my-8 md:my-16 flex mx-auto flex-col items-center p-4"
     >
-      <figure
-        style={{
-          ...colors,
-          transition: `
+      <div className="relative p-1.5 flex items-center justify-center">
+        <div
+          className="w-full h-full absolute rounded-full"
+          style={{
+            ...colors,
+
+            overflow: "hidden",
+            transition: `
           ${colorKeys[0]} ${transitionDelay}ms linear,
           ${colorKeys[1]} ${transitionDelay}ms linear,
           ${colorKeys[2]} ${transitionDelay}ms linear
         `,
-          background: `
+            background: `
           radial-gradient(
             circle at top left,
             var(${colorKeys[2]}),
@@ -32,17 +36,19 @@ const Header = () => {
             var(${colorKeys[0]})
           )
         `,
-        }}
-        className="relative w-[160px] h-[160px] md:w-[320px] md:h-[320px] mx-auto"
-      >
-        <Image
-          src={roobenPhoto}
-          alt="A Picture of rooben"
-          layout="fill"
-          objectFit="contain"
+          }}
         />
-        <figcaption className="sr-only">A Picture of rooben</figcaption>
-      </figure>
+
+        <figure className="relative w-[160px] h-[160px] border-4 rounded-full border-white md:w-[320px] md:h-[320px] mx-auto">
+          <Image
+            src={roobenPhoto}
+            alt="A Picture of rooben"
+            layout="fill"
+            objectFit="contain"
+          />
+          <figcaption className="sr-only">A Picture of rooben</figcaption>
+        </figure>
+      </div>
 
       <Text className="px-4 mt-8 mb-4">Hey 👋, I’m Ruban kumar</Text>
       <Title>

@@ -53,9 +53,9 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
                   href={`/ai-artwork/?photoId=${id}`}
                   as={`/ai-artwork/p/${id}`}
                   shallow
-                  className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+                  className="after:content group relative mb-5 block w-full after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                 >
-                  <div className="relative pb-1/1 group rounded-2xl overflow-hidden">
+                  <div className="relative pb-1/1 group rounded-2xl overflow-hidden cursor-zoom-in">
                     <Image
                       alt="ai image"
                       className="transform rounded-2xl brightness-90 transition will-change-auto object-cover absolute w-full h-full group-hover:brightness-110"

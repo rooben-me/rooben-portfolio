@@ -9,14 +9,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <NextSeo
-        title="Rooben - UI Engineer | Portfolio"
-        titleTemplate="%s - Rooben - UI Engineer | Portfolio"
-        defaultTitle="Rooben"
+        title="Rooben Portfolio - UI Engineer"
+        defaultTitle="Rooben Portfolio"
         description="A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts."
         canonical="https://rooben.site/"
         openGraph={{
           url: "https://rooben.site/",
-          title: "Rooben - UI Engineer | Portfolio",
+          title: "Rooben - UI Engineer",
           description:
             "A full stack UI Engineer, who loves to design and develop beautiful websites. I have been coding for 2 year now. One of my hobbies is writing, I love to document my journey by writing blog posts.",
           images: [
@@ -27,7 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               alt: "Picture of rooben - UI Engineer",
             },
           ],
-          siteName: "Rooben Portfolio",
         }}
       />
 

@@ -33,7 +33,6 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
     <>
       <NextSeo
         title={`Rooben Portfolio - ${frontMatter.title}`}
-        titleTemplate={`Rooben Portfolio - ${frontMatter.title}`}
         defaultTitle="Rooben Portfolio"
         description={frontMatter.description}
         canonical="https://rooben.vercel.app/"

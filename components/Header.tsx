@@ -21,7 +21,6 @@ const Header = () => {
           className="w-full h-full absolute rounded-full"
           style={{
             ...colors,
-
             overflow: "hidden",
             transition: `
           ${colorKeys[0]} ${transitionDelay}ms linear,

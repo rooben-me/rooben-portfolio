@@ -12,6 +12,7 @@ const Header = () => {
           alt="A Picture of rooben"
           layout="fill"
           objectFit="contain"
+          className="rounded-full bg-white"
         />
         <figcaption className="sr-only">A Picture of rooben</figcaption>
       </figure>

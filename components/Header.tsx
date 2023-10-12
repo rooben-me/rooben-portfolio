@@ -17,14 +17,14 @@ const Header = () => {
         <figcaption className="sr-only">A Picture of rooben</figcaption>
       </figure>
 
-      <Text className="px-4 mt-8 mb-4">Hey 👋, I’m Ruban kumar</Text>
+      <Text className="px-4 mt-8 mb-4">Hey 👋, I&apos;m Ruban kumar</Text>
       <Title>
         I design & develop interfaces and craft beautiful products for web &
         mobile
       </Title>
       <Text className="mt-4">
-        I've been crafting products for the last 3 years and have built various
-        human-centered digital experiences for businesses.
+        I&apos;ve been crafting products for the last 3 years and have built
+        various human-centered digital experiences for businesses.
       </Text>
 
       <a

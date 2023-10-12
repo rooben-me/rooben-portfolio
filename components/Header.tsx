@@ -19,11 +19,13 @@ const Header = () => {
 
       <Text className="px-4 mt-8 mb-4">Hey 👋, I’m Ruban kumar</Text>
       <Title>
-        I Design & Develop interface & craft beautiful products for web & Mobile
+        I Design, Develop Interfaces, and Craft Beautiful Products for Web &
+        Mobile
       </Title>
       <Text className="mt-4">
-        I&apos;ve been crafting products for the last 3 years and have built
-        various human-centered digital experiences for businesses.
+        With over 3 years of experience, I&apos;ve been creating various
+        human-centered digital experiences that have greatly benefited
+        businesses. various human-centered digital experiences for businesses.
       </Text>
 
       <a

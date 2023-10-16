@@ -24,7 +24,7 @@ const Header = () => {
       </Title>
       <Text className="mt-4">
         I&apos;ve been crafting products for the last 3 years and have built
-        various human-centered digital experiences for businesses.
+        various human-centered digital experiences for businesses
       </Text>
 
       <a

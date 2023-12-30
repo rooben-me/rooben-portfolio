@@ -14,7 +14,7 @@ interface ICard {
 const Card = ({ src, slug, roles, date }: ICard) => {
   return (
     <Link href={`/posts/${slug}`}>
-      <a className="w-full flex items-center justify-center rounded-xl hover:border-slate-200 hover:bg-white/50 active:ring-2 active:ring-primary-main border border-transparent transition-colors ease-in-out">
+      <a className="w-full flex items-center justify-center rounded-xl active:ring-2 active:ring-offset-2 active:ring-primary-main border border-transparent transition-colors ease-in-out">
         <article className="flex flex-col items-start gap-2 md:gap-4 max-w-[520px] w-full">
           <img
             src={src}
@@ -54,6 +54,7 @@ const Card = ({ src, slug, roles, date }: ICard) => {
           <div className="text-orange-700 bg-orange-100 hidden"></div>
           <div className="text-red-700 bg-red-100 hidden"></div>
           <div className="text-fuchsia-700 bg-fuchsia-100 hidden"></div>
+          <div className="bg-indigo-100 text-indigo-700 hidden"></div>
         </article>
       </a>
     </Link>

@@ -14,8 +14,9 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
-  const projectPosts = posts.filter((post) => !post.roles.includes("research"));
-  const researchPosts = posts.filter((post) => post.roles.includes("research"));
+  const projectPosts = posts.filter((post) => post.section === "projects");
+  const adventurePosts = posts.filter((post) => post.section === "adventure");
+  const researchPosts = posts.filter((post) => post.section === "research");
   return (
     <section className="font-monda overflow-hidden relative">
       <div className="container mx-auto">
@@ -27,6 +28,13 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
           posts={projectPosts}
           title="Projects"
           description="Includes Saas Application, Chrome extension projects"
+        />
+
+        {/* Adventure or Exploration */}
+        <MainSection
+          posts={adventurePosts}
+          title="Adventure/Exploration"
+          description="Features exciting journeys, exploratory missions, and innovative experiments in various domains."
         />
 
         {/* Ai generated Images */}
@@ -59,6 +67,7 @@ export const getStaticProps: GetStaticProps = async () => {
     "description",
     "roles",
     "draft",
+    "section",
   ]);
 
   const filteredPosts = posts.filter((post) => !post.draft);

@@ -1,0 +1,114 @@
+---
+date: "2023-10-16"
+thumbnail: "/image/work/marketradar/marketradar.svg"
+thumbnailBanner: "/image/work/marketradar/market_radar_into.svg"
+title: "Leo ticket booking"
+roles: ["research"]
+description: "The Ultimate Real-Time Price Monitoring Tool for E-commerce Marketplaces and Sellers"
+draft: true
+---
+
+# How did i book leo fdfs
+
+i was very interstered in watching the movie but i know it is very hard to get movie ticket for this movie. because one this movie's actor is actor vijay and he is the one of the famous start in tamil nadu and another it is alokesh kanakaraj flim who is makking a cinematic univese, intially before announcing itself there was a huge amount of hype around this flim.
+
+so to book i want to refresh the website and i want to sit all day waiting for the cinemas to open and to book.
+
+## planning
+
+my initial thought was to automate this process , like i dont need to book ticket with code becuase i thought it would take a lot of time and i only had one day becuase the theatre can open ticket booking anytime today night or tomorrow, so i just a system that should notify me that the tickets are opened. so that is the plan.
+
+a system that should ,
+
+- checks paytm movies app to see if there is a opening
+- send a notification either through email or telegram.
+
+ok this is the plan.
+
+## send alert to telegram
+
+## A system that checks the paytm movies
+
+instead of making something from scratch i searched in github if there is any projects that i doing the same thing i want to do. and after a google search i found there is tool that can do the same thing i wanted to do. the tool is called **urlwatch**.
+
+> urlwatch is intended to help you watch changes in webpages and get notified (via e-mail, in your terminal or through various third party services) of any changes. The change notification will include the URL that has changed and a unified diff of what has changed.
+
+so using this tool, i can check if there is any changes in the website. so the idea for now is to check if there is any changes in the main page. i will send the notification.
+
+![checking-website-main-page](/image/work/leo-ticket-booking/1.png)
+
+here you can see there is no leo movie poaster because no cinema theatre havnt opended their booking, but if they open a booking this screen will be updated and leo poster will come.
+
+everything was set for the fechign process but issue arised.
+
+there was a movie theatre opened but i dont want to book a show in that theatre becuase it is 20kms far from my place. and the idea i had about checking the page will not work now becuase there is a cinema theatre that is opned, if i want to check for a specific cinema i want to do that by the theatre page of leo but there was a big problem.
+
+the problem
+
+> this is the link for the leo cinema page : https://paytm.com/movies/leo-movie-detail-159845?frmtid=rur_1kciu&fromdate=2023-10-20
+
+when i open this page, we'll see the page below,
+
+![useless page of paytm movies](/image/work/leo-ticket-booking/2.png)
+
+here you can see the problem , we need to choose the district, and the cinemas theatre will load based on the selected district.
+
+the problem is the district state is not in the url but it is stored in the session storage
+
+![session storage image](/image/work/leo-ticket-booking/3.png)
+
+so what i want to do is figure out someway that set a session storage value wiht urlwatch and give the url of the page.
+
+but it was a dead end, i cannot find a way to make it work.
+
+so went back to zero. i need a way to get the info.
+
+### a light of hope
+
+when tinkering in the network tab of the paytm movies page. there was a ligth of hope i can see. **a api call**. a api call that is made from the paytm frontend to the paytm backend
+
+![backend api call](/image/work/leo-ticket-booking/4.png)
+
+i want to see what this api will provide . for some reason i canno tview the preview response tab or the response tab in the chrome dev tab. so i used post man to call this api and check the response.
+
+this was the response below, it had eveerything about hte page and the main thing was it included a param where i can pass the district so i can pass my district - puducherry. and the respose had everything but a very intersting response in the json was the cinemas object which contained the name of the cinemas that is opened for the movies.
+
+![post man api call](/image/work/leo-ticket-booking/5.png)
+
+so the plan now is very simple ,i just want the urlwatch to find diff in the json , if it is changed i want to get the notification.
+
+i added this api call to urlwatch. and this was the response.
+![terminal urlwatch output](/image/work/leo-ticket-booking/6.png)
+
+so i thought thats it but the real story just began.
+
+there was a big problem with this api , as you can see in the output above there was a first value called serverTime. which gets updated whenever i call the api. so if i wanted to check the api value is changed with urlwatch. it will be triggered everytime.
+
+but the answer is simple , i think you will know m that i should i just let urlwatch know dont see changes for the entire json but only for hte theatre object. and i also saw the documentation of urlwatch, they had a option using jq which we can filter the json.
+
+![terminal urlwatch output](/image/work/leo-ticket-booking/7.png)
+
+so this is the code for urlwatch to watch a specific api with filter
+
+```
+name: "paytm"
+url: "https://apiproxy.paytm.com/v3/movies/search/movie?meta=1&reqData=1&city=puducherry&movieCode=rur_1kciu&version=3&site_id=1&channel=web&child_site_id=1"
+filter:
+  - jq:
+      query: ".meta.cinemas"
+#name: "rooben site"
+#url: "https://rooben.site"
+#filter:
+#  - css: "body"
+#  - html2text:
+#    method: re
+
+```
+
+the code is good but it is not working it said some error with jq. and i tried to debug all night but nothing worked reinstalled everyhing python , jq all teh thing , also tried with windows and another linux vm but still the same error and recently i got my macbook m1 but mac os worked the same code. so everything was fine
+
+run this code predioically, default way cronjob but didnt work for me. i create a bash script for it. this is the code.
+
+## easier way to do with python
+
+easier way other than this created a python script that does the same thing.

@@ -1,0 +1,91 @@
+---
+date: "2024-1-1"
+thumbnail: "/image/work/rio-ticket/thumbnail.svg"
+thumbnailBanner: "/image/work/rio-ticket/banner.svg"
+title: "Late Night Quest"
+roles: ["Adventure"]
+description: "Join me on my late-night coding adventure as I unravel the list of Indian movies screened at Vancouver's Rio Theatre"
+draft: false
+section: "adventure"
+---
+
+## The Quest Begins
+
+Today is December 29th in Vancouver, and I just arrived here 14 days ago (December 14, 2023). I've always wanted to watch movies that I find interesting in theaters. In downtown Vancouver, there is only one theater that shows Indian films, which is the Rio Theatre.
+
+The problem is that the Rio Theatre only shows a selected number of films from India; they do not release all the movies. So, if I want to know if there will be movies that I like released in this theater, I need to check the history of movies that have been released there.
+
+This is the journey of discovering which Indian movies have been released at the Rio Theatre.
+
+## The Motivation
+
+But you may ask, what are you going to do with this information? It will allow me to sleep peacefully tonight. Right now, it's 12:46 AM on Saturday, December 30, 2023, and I'm just obsessed with this. I also want to know if the movie "Viduthalai" was released here because I am very excited about the second part of the "Viduthalai" movie. You could say that's another reason for wanting to know this information.
+
+## The First Step: Gathering Movie Information
+
+The page at `https://riotheatre.ca/movie/page/6/?orderby=post_date` lists all the movies released at the Rio Theatre, but there's a problem: I cannot view all the movies at once. To find all Indian movies, I must go through each page, click on the next button to go to a new page, and repeat the same step again and again.
+
+To automate this process, I initially searched for any API that the frontend is calling so I could directly access all the information. Unfortunately, there was no API call because the site is server-rendered. It was just plain HTML that is sent to the browser. So, if I want to get all the movies, I need to somehow scrape through all the pages and extract the information to save it to a database.
+
+For your information: a single page is limited to showing only 10 movies, and there are a total of 222 pages, so there are approximately around 2220 movies.
+
+![Preview image](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre.webp)
+
+The HTML structure is the same for all pages, so I just have to loop through all the pages somehow and extract the information in the div with the class "column."
+
+![Preview image-1](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-1.webp)
+
+## The Approach
+
+I am a UI engineer, and I am more into UI and stuff, but I also do something like this once in a while. I have previously worked with Python but not extensively, and I have never worked with BeautifulSoup, which is a parsing library to extract information from HTML. So, I asked my good old friend GPT to create the Python code for me to do this.
+
+> SPOILER : It didn't work right out of the box
+
+## Code Execution and Troubleshooting
+
+Running the code for the first time resulted in some issues:
+
+![Preview image-2](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-2.webp)
+
+![Preview image-3](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-3.webp)
+
+![Preview image-4](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-4.webp)
+
+After running the code successfully, I encountered another problem:
+
+![Preview image-5](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-5.webp)
+
+The file was created, but it contained no data.
+
+## Resolving Issues
+
+After a lot of troubleshooting, here’s what I found:
+
+1. Line 33 was the main reason no data was extracted. I removed this line and directly searched through the class name "column is-6."
+
+![Preview image-7](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-7.webp)
+
+2. A silly mistake - The code to extract the upload date function was not working because it had an AND condition at the end to check if there was no upload date, don't save it. It was a silly mistake, but hey, GPT gets it wrong sometimes. So I just changed the AND operator to OR to fix this.
+
+![Preview image-8](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-8.webp)
+
+## Success at Last
+
+With the issues fixed, I reran the code for just one page to not have to wait too long:
+
+![Preview image-9](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-9.webp)
+
+And finally, the results were as expected:
+
+![Preview image-10](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-10.webp)
+
+The time is now 1:34 AM, and it finally works. Now I want to run it for all 222 pages.
+
+![Result 1](/image/work/rio-ticket/I-want-to-know-about-all-the-Tamil-movies-released-at-the-Rio-Theatre-11-Screen-Recording-2023-12-30-at-3.08.36-PM.mp4)
+
+CSV file containing all the movies released in rio theatre.
+![Result 2](/image/work/rio-ticket/I-want-to-know-about-all-the-Tamil-movies-released-at-the-Rio-Theatre-12-Screen-Recording-2023-12-30-at-3.10.29-PM.mp4)
+
+## The Final Code
+
+![Preview image-11](/image/work/rio-ticket/I%20want%20to%20know%20about%20all%20the%20Tamil%20movies%20released%20at%20the%20Rio%20Theatre-11.webp)

@@ -9,8 +9,8 @@ import {
 
 export let TAG_COLOR = {
   "Product Design": {
-    color: "text-cyan-700",
-    backgroundColor: "bg-cyan-100",
+    color: "text-green-700",
+    backgroundColor: "bg-green-100",
     icon: PuzzlePieceIcon,
   },
   research: {
@@ -19,13 +19,13 @@ export let TAG_COLOR = {
     icon: AcademicCapIcon,
   },
   Adventure: {
-    color: "text-white",
-    backgroundColor: "bg-gradient-to-tr from-indigo-500 to-purple-600",
+    color: "text-indigo-700",
+    backgroundColor: "bg-indigo-100",
     icon: MapIcon,
   },
   Exploration: {
-    color: "text-white",
-    backgroundColor: "bg-gradient-to-tr from-blue-500 to-indigo-600",
+    color: "text-indigo-700",
+    backgroundColor: "bg-indigo-100",
     icon: MapIcon,
   },
   "Front end Development": {
@@ -34,8 +34,8 @@ export let TAG_COLOR = {
     icon: WrenchScrewdriverIcon,
   },
   "Product Owner": {
-    color: "text-orange-700",
-    backgroundColor: "bg-orange-100",
+    color: "text-red-700",
+    backgroundColor: "bg-red-100",
     icon: BuildingOfficeIcon,
   },
   "Design and Development": {

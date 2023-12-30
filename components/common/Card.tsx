@@ -53,7 +53,8 @@ const Card = ({ src, slug, roles, date }: ICard) => {
           <div className="text-green-700 bg-green-100 hidden"></div>
           <div className="text-orange-700 bg-orange-100 hidden"></div>
           <div className="text-red-700 bg-red-100 hidden"></div>
-          <div className="text-fuchsia-700 bg-fuchsia-100 bg-gradient-to-tr from-indigo-500 to-purple-600 from-blue-500 to-indigo-600 hidden"></div>
+          <div className="text-fuchsia-700 bg-fuchsia-100 hidden"></div>
+          <div className="bg-indigo-100 text-indigo-700 hidden"></div>
         </article>
       </a>
     </Link>

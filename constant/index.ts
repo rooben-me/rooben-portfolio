@@ -4,6 +4,7 @@ import {
   PuzzlePieceIcon,
   WrenchScrewdriverIcon,
   BuildingOfficeIcon,
+  MapIcon,
 } from "@heroicons/react/24/solid";
 
 export let TAG_COLOR = {
@@ -16,6 +17,16 @@ export let TAG_COLOR = {
     color: "text-fuchsia-700",
     backgroundColor: "bg-fuchsia-100",
     icon: AcademicCapIcon,
+  },
+  Adventure: {
+    color: "text-white",
+    backgroundColor: "bg-gradient-to-tr from-indigo-500 to-purple-600",
+    icon: MapIcon,
+  },
+  Exploration: {
+    color: "text-white",
+    backgroundColor: "bg-gradient-to-tr from-blue-500 to-indigo-600",
+    icon: MapIcon,
   },
   "Front end Development": {
     color: "text-green-700",

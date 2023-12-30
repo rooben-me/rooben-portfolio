@@ -7,4 +7,5 @@ export interface IPost {
   description: string;
   roles: string[];
   draft: boolean;
+  section: "projects" | "adventure" | "research";
 }

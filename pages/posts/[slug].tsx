@@ -51,7 +51,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
           },
           images: [
             {
-              url: frontMatter.thumbnail,
+              url: frontMatter.thumbnailBanner,
               width: 720,
               height: 420,
               alt: frontMatter.title,

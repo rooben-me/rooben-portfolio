@@ -13,6 +13,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import RoleTag from "../../components/common/RoleTag";
 
 // props type
 type Props = {
@@ -70,6 +71,8 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
           <p className="text-lg md:text-xl mx-auto max-w-3xl text-center text-slate-600 mt-6 p-4">
             {frontMatter.description}
           </p>
+
+          <RoleTag roles={frontMatter.roles} className="justify-center mt-8" />
         </div>
 
         <img

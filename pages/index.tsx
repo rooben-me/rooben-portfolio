@@ -34,7 +34,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
         <MainSection
           posts={adventurePosts}
           title="Adventure/Exploration"
-          description="Features exciting journeys, exploratory missions, and innovative experiments in various domains."
+          description="Features exciting journeys, exploratory missions, and innovative experiments in various domains"
         />
 
         {/* Ai generated Images */}

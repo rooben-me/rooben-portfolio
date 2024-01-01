@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { InterLinks } from "./Navbar";
 
 const social = [
@@ -46,7 +47,7 @@ const social = [
 export default function Footer() {
   return (
     <footer>
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8 flex flex-col gap-6">
+      <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8 flex flex-col items-center gap-6">
         <InterLinks isFooter />
         <div className="mt-4 md:mt-6 flex justify-center space-x-10">
           {social.map((item) => (
@@ -62,6 +63,9 @@ export default function Footer() {
             </a>
           ))}
         </div>
+
+        {/* Signature */}
+        <img src="/image/signature.png" className="w-72 mt-24" />
       </div>
     </footer>
   );

@@ -8,6 +8,7 @@ import Crystals from "../components/Crystals";
 import Footer from "../components/Footer";
 import MainSection from "../components/common/MainSection";
 import AiGenerated from "../components/section/AiGenerated";
+import { Button } from "../components/common/Button";
 
 type Props = {
   posts: IPost[];

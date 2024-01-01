@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
 
         {/* Signature */}
-        <img src="/image/signature.png" className="w-72 mt-24" />
+        <img src="/image/signature.png" className="w-56 lg:w-72 mt-24 mx-4" />
       </div>
     </footer>
   );

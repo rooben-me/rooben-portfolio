@@ -14,6 +14,9 @@ import Footer from "../../components/Footer";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import RoleTag from "../../components/common/RoleTag";
+import { Button } from "../../components/common/Button";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 // props type
 type Props = {
@@ -63,16 +66,31 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
       <section className="font-monda container mx-auto p-4">
         <Navbar />
 
-        <div className="flex flex-col py-4 md:py-16">
-          <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
-            {frontMatter.title}
-          </h1>
+        <div className="flex flex-col pb-12 md:py-16">
+          <div className="flex flex-col justify-center items-center container relative">
+            <Link href={"/"}>
+              <Button
+                variant="outline"
+                className="inline-flex w-fit bg-white/60 mx-auto lg:absolute lg:left-[3.25rem] text-gray-700 mb-8 mt-12 lg:my-0"
+              >
+                <ArrowUturnLeftIcon className="w-3 h-3 mr-2 text-gray-500 " />
+                Go Back
+              </Button>
+            </Link>
 
-          <p className="text-lg md:text-xl mx-auto max-w-3xl text-center text-slate-600 mt-6 p-4">
+            <h1 className="text-3xl md:text-5xl font-semibold text-center text-slate-800">
+              {frontMatter.title}
+            </h1>
+          </div>
+
+          <p className="text-lg md:text-xl mx-auto max-w-3xl text-center text-slate-600 md:mt-4 lg:mt-6 p-4">
             {frontMatter.description}
           </p>
 
-          <RoleTag roles={frontMatter.roles} className="justify-center mt-8" />
+          <RoleTag
+            roles={frontMatter.roles}
+            className="justify-center mt-2 lg:mt-8"
+          />
         </div>
 
         <img

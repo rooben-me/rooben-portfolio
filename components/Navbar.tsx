@@ -64,7 +64,7 @@ const Navbar = () => {
 
       <InterLinks />
 
-      <Link href="mailto:rubankumar.nkl@gmail.com">
+      <Link href="https://www.linkedin.com/in/rooben-me/recent-activity/all/">
         <a className="hidden w-40 relative primary-gradient text-xl place-self-end font-medium md:flex flex-col items-center justify-center gap-1 link link--carme">
           <span>Contact me</span>
           <svg

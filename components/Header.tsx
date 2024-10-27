@@ -5,7 +5,7 @@ import { Text, Title } from "./common/Typography";
 
 const Header = () => {
 
-  const resume_link = "https://drive.google.com/file/d/1JiPi7y0Scj2XiG3RPMXto_v-zU6evcFb/view?usp=sharing"
+  const resume_link = "https://drive.google.com/file/d/1pwVWYGdTUJf0ZdJntt7Du_ZeXzourKmZ/view?usp=sharing"
   
   return (
     <section id="hero" className="my-8 flex mx-auto flex-col items-center p-4">

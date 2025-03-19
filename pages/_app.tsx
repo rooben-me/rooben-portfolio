@@ -3,7 +3,6 @@ import "../styles/prism-coldark-dark.css";
 
 import type { AppProps } from "next/app";
 import { NextSeo } from "next-seo";
-import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -30,7 +29,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
 
       <Component {...pageProps} />
-      <Analytics />
     </>
   );
 }

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { AppProps } from "next/app";
 import { NextSeo } from "next-seo";
-import { Router } from 'next/router'
+import { Router, useRouter } from 'next/router'
 
 import posthog from 'posthog-js'
 import { PostHogProvider } from 'posthog-js/react'
@@ -11,10 +11,12 @@ import "../styles/prism-coldark-dark.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
+  const router = useRouter()
+  const oldUrlRef = useRef(router)
+
   useEffect(() => {
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
-      person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
       // Enable debug mode in development
       loaded: (posthog) => {
         if (process.env.NODE_ENV === 'development') posthog.debug()
@@ -23,13 +25,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const handleRouteChange = () => posthog?.capture('$pageview')
 
+    const handleRouteChangeStart = () => posthog?.capture('$pageleave', {
+      $current_url: oldUrlRef.current
+    })
+
     Router.events.on('routeChangeComplete', handleRouteChange);
+    Router.events.on('routeChangeStart', handleRouteChangeStart);
 
     return () => {
       Router.events.off('routeChangeComplete', handleRouteChange);
+      Router.events.off('routeChangeStart', handleRouteChangeStart);
     }
   }, [])
-
 
   return (
     <>

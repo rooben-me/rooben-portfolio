@@ -23,6 +23,7 @@
     "next": "12.2.2",
     "next-mdx-remote": "^4.4.1",
     "next-seo": "^5.4.0",
+    "posthog-js": "^1.231.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hooks-global-state": "^2.0.0",
